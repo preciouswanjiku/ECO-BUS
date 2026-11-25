@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco Bus — Kampala · Nairobi · Juba</title>
+<meta name="description" content="Eco Bus links East Africa's capitals with modern, low-emission coaches. Book seats, pay by M-Pesa prompt, and get your e-ticket instantly.">
+<meta name="theme-color" content="#06231a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f7f5ee; --ink:#0b2b20; --forest:#0e3f2e; --emerald:#12a159; --emerald-2:#0e8c5a;
+  --lime:#c9f26f; --mint:#dcf7e6; --amber:#ffcf7d; --muted:#5f776b; --line:rgba(11,43,32,.12);
+  --card:#ffffff; --radius:24px; --shadow-lg:0 24px 60px -20px rgba(7,39,28,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.no-scroll{overflow:hidden}
+h1,h2,h3,h4,.brand span{font-family:'Sora',sans-serif}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+::selection{background:var(--lime);color:var(--ink)}
+:focus-visible{outline:3px solid var(--emerald);outline-offset:2px;border-radius:6px}
+.wrap{width:min(1180px,92%);margin-inline:auto}
+section{scroll-margin-top:96px}
+.skip{position:absolute;left:-999px;top:0;background:var(--lime);color:var(--ink);padding:.6rem 1rem;z-index:999;border-radius:0 0 12px 0}
+.skip:focus{left:0}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--emerald),var(--lime));z-index:300}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:.95rem;transition:.25s ease;white-space:nowrap;border:1.5px solid transparent}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-primary{background:linear-gradient(120deg,var(--emerald),var(--lime));color:#06231a;box-shadow:0 12px 30px -10px rgba(18,161,89,.6)}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#eaf7ee}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.6)}
+.btn-dark{background:var(--ink);color:#eaf7ee}
+.btn-dark:hover{transform:translateY(-2px);background:var(--forest)}
+.btn-line{border-color:var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--emerald);color:var(--forest);transform:translateY(-2px)}
+.btn-sm{padding:.55rem 1.15rem;font-size:.85rem}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.btn.loading{pointer-events:none;opacity:.8}
+.btn.loading::after{content:"";width:15px;height:15px;border-radius:50%;border:2.5px solid rgba(6,35,26,.25);border-top-color:#06231a;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.nav{position:fixed;inset:0 0 auto;z-index:100;transition:.3s;padding-block:14px}
+.nav.scrolled{background:rgba(7,34,25,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px -18px rgba(0,0,0,.6);padding-block:10px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.65rem;font-family:'Sora';font-weight:700;font-size:1.3rem;color:#fff;letter-spacing:-.02em}
+.brand b{color:var(--lime);font-weight:800}
+.menu{display:flex;align-items:center;gap:1.6rem}
+.menu a:not(.btn){color:#d7e9dd;font-weight:500;font-size:.93rem;position:relative}
+.menu a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--lime);transition:.25s;border-radius:2px}
+.menu a:not(.btn):hover{color:#fff}
+.menu a:not(.btn):hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;padding:.6rem;border-radius:10px;background:rgba(255,255,255,.1)}
+.burger span{width:22px;height:2.5px;background:#fff;border-radius:3px;transition:.3s}
+.burger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+.hero{position:relative;color:#f2fbf5;padding:158px 0 150px;overflow:hidden;
+  background:radial-gradient(1200px 600px at 82% -10%,#14523c 0%,transparent 60%),
+             radial-gradient(900px 500px at -10% 40%,#114634 0%,transparent 55%),
+             linear-gradient(160deg,#0b3a2a,#06231a 72%)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:26px 26px;opacity:.3;
+  -webkit-mask-image:radial-gradient(700px 420px at 72% 18%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(700px 420px at 72% 18%,#000 30%,transparent 78%)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:drift 16s ease-in-out infinite alternate;pointer-events:none}
+.b1{width:430px;height:430px;background:#16a05f;top:-130px;left:-110px}
+.b2{width:380px;height:380px;background:#0d6b47;bottom:-150px;right:-90px;animation-delay:-6s}
+.b3{width:260px;height:260px;background:#9bd45e;top:28%;right:22%;opacity:.22;animation-delay:-11s}
+@keyframes drift{to{transform:translate(44px,30px) scale(1.08)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.pill{display:inline-flex;gap:.5rem;align-items:center;padding:.55rem 1.05rem;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:.85rem;font-weight:500;backdrop-filter:blur(6px)}
+h1{font-size:clamp(2.5rem,5.2vw,4.3rem);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:1.2rem 0 1.1rem}
+h1 em{font-style:normal;color:var(--lime)}
+.lede{color:#b9d8c6;font-size:1.09rem;max-width:34rem}
+.hero-cta{display:flex;gap:.9rem;margin:1.9rem 0 2.3rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.6rem;flex-wrap:wrap}
+.hero-stats b{font-family:'Sora';font-size:1.7rem;color:var(--lime);letter-spacing:-.02em;font-weight:800}
+.hero-stats span{display:block;color:#9dc3ad;font-size:.84rem;margin-top:.15rem}
+.hero-art{position:relative}
+.map-card{position:relative;background:linear-gradient(155deg,rgba(255,255,255,.1),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:1.2rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px -30px rgba(0,0,0,.55)}
+.map text{font:600 15px 'Sora',sans-serif;fill:#eaf7ee}
+.route-line{fill:none;stroke:rgba(234,247,238,.5);stroke-width:3;stroke-linecap:round;stroke-dasharray:7 11;animation:dash 30s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-360}}
+.pin-ring{fill:none;stroke:var(--lime);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}80%{transform:scale(1.9);opacity:0}100%{opacity:0}}
+.chip{position:absolute;display:flex;flex-direction:column;gap:.05rem;padding:.7rem 1.05rem;border-radius:16px;background:rgba(9,40,29,.88);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);box-shadow:0 14px 30px -14px rgba(0,0,0,.55);animation:float 6s ease-in-out infinite;z-index:3}
+.chip small{color:#9dc3ad;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.chip b{font-family:'Sora';color:#fff;font-size:1.05rem;letter-spacing:-.01em}
+.c1{top:-24px;right:-12px}.c2{left:-18px;top:38%;animation-delay:-2.5s}.c3{bottom:-26px;right:6%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+.marquee{background:var(--lime);color:#12331f;overflow:hidden;border-block:1px solid rgba(18,51,31,.2)}
+.marquee-track{display:flex;width:max-content;padding:.8rem 0;animation:marq 32s linear infinite;font-family:'Sora';font-weight:700;font-size:.85rem;letter-spacing:.12em}
+.m-item{padding-right:3rem;position:relative}
+.m-item::after{content:"✦";position:absolute;right:1.1rem;opacity:.5}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+.book{position:relative;z-index:5;margin-top:-86px}
+.book-card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow-lg);padding:1.7rem}
+.book-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.book-head h2{font-size:1.45rem;letter-spacing:-.02em}
+.book-sub{color:var(--muted);font-size:.88rem}
+.swap{border:1.5px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-size:.85rem;font-weight:600;color:#41604f;transition:.25s}
+.swap:hover{border-color:var(--emerald);color:var(--forest);transform:translateY(-1px)}
+.book-form{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem}
+.field{display:flex;flex-direction:column;gap:.35rem}
+.field label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.field select,.field input{padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#f6faf7;font:inherit;font-weight:500;color:var(--ink);transition:.2s;width:100%}
+.field select{appearance:none;-webkit-appearance:none;padding-right:2.4rem;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230b2b20' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .95rem center}
+.field select:focus,.field input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 4px rgba(18,161,89,.14)}
+.book-foot{display:flex;justify-content:space-between;align-items:center;gap:1.2rem;margin-top:1.3rem;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:1.3rem}
+.quote small{color:var(--muted);font-size:.82rem}
+.quote strong{display:block;font-family:'Sora';font-size:1.9rem;font-weight:800;color:var(--forest);letter-spacing:-.02em;line-height:1.2}
+.quote-note{color:var(--emerald-2);font-size:.85rem;font-weight:500}
+.book-actions{display:flex;flex-direction:column;align-items:flex-end;gap:.7rem}
+.btn-row{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:flex-end}
+.pay-note{display:flex;gap:.45rem;flex-wrap:wrap;justify-content:flex-end}
+.pay{padding:.35rem .8rem;border-radius:999px;background:var(--mint);font-size:.76rem;font-weight:600;color:#0e5c3c}
+
+.section{padding:100px 0}
+.sec-head{max-width:660px;margin-bottom:3rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--emerald-2)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--emerald);border-radius:2px}
+h2{font-size:clamp(1.9rem,3.4vw,2.7rem);letter-spacing:-.02em;line-height:1.12;margin-top:.7rem}
+.sec-sub{color:var(--muted);margin-top:.9rem}
+.fares-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.fare{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.7rem;display:flex;flex-direction:column;gap:.85rem;transition:.3s;position:relative}
+.fare:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(18,161,89,.4)}
+.fare-top{display:flex;justify-content:space-between;align-items:center}
+.flags{font-size:1.45rem;letter-spacing:.08em}
+.badge{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:999px;background:var(--mint);color:#0e5c3c}
+.badge.biz{background:#fff6e0;color:#8a5a00}
+.fare h3{font-size:1.22rem;letter-spacing:-.01em}
+.dur{color:var(--muted);font-size:.88rem;margin-top:-.55rem}
+.price{font-family:'Sora';font-weight:800;font-size:2.05rem;color:var(--forest);letter-spacing:-.02em}
+.price small{font-size:.95rem;font-weight:700;color:var(--emerald-2);margin-right:.25rem}
+.price span{font-size:.85rem;color:var(--muted);font-weight:500}
+.incl{display:grid;gap:.4rem;font-size:.92rem;color:#3c564b}
+.incl li::before{content:"✓";color:var(--emerald);font-weight:800;margin-right:.55rem}
+.fare .btn{margin-top:auto;justify-content:center}
+.fare.featured{background:linear-gradient(165deg,#0e3f2e,#0a2c20);color:#eefaf2;border-color:transparent}
+.fare.featured .price{color:var(--lime)}
+.fare.featured .price span{color:#9dc3ad}
+.fare.featured .dur{color:#9dc3ad}
+.fare.featured .incl{color:#c8e6d4}
+.fare.featured .badge.biz{background:rgba(255,190,60,.16);color:var(--amber)}
+.classes{background:linear-gradient(180deg,#06231a,#0b3a2a);color:#eefaf2}
+.classes .eyebrow{color:var(--lime)}
+.classes .eyebrow::before{background:var(--lime)}
+.classes .sec-sub{color:#a9cbb8}
+.class-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.class-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:26px;padding:2rem;backdrop-filter:blur(8px)}
+.class-card h3{font-size:1.45rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.class-card .routes{color:#a9cbb8;font-size:.9rem;margin:.4rem 0 1.1rem}
+.class-card .incl{color:#c8e6d4}
+.class-card .incl li::before{color:var(--lime)}
+.price-lg{font-family:'Sora';font-size:1.55rem;font-weight:800;color:var(--lime);margin-top:1.3rem}
+.price-lg span{font-size:.85rem;color:#9dc3ad;font-weight:500}
+.biz-card{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.05));border-color:rgba(201,242,111,.4)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.why-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.7rem;transition:.3s}
+.why-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.why-card .ic{width:52px;height:52px;border-radius:16px;background:var(--mint);display:grid;place-items:center;font-size:1.45rem;margin-bottom:1rem}
+.why-card h3{font-size:1.08rem;margin-bottom:.4rem}
+.why-card p{color:var(--muted);font-size:.92rem}
+.impact{margin-top:2.4rem;background:linear-gradient(120deg,var(--emerald),#0d7c50);border-radius:26px;padding:2.3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;color:#fff;box-shadow:0 24px 50px -22px rgba(13,124,80,.55)}
+.impact b{font-family:'Sora';font-size:2.15rem;font-weight:800;letter-spacing:-.02em;display:block}
+.impact span{color:#d6f5e2;font-size:.9rem}
+.t-wrap{max-width:840px;margin-inline:auto}
+.t-slide{display:none;text-align:center;padding:2.4rem .5rem 1.8rem}
+.t-slide.active{display:block;animation:fadeUp .55s ease}
+.t-quote{font-family:'Sora';font-size:clamp(1.2rem,2.4vw,1.65rem);line-height:1.45;letter-spacing:-.01em}
+.t-quote::before{content:"“";color:var(--emerald);margin-right:.15rem}
+.t-quote::after{content:"”";color:var(--emerald);margin-left:.15rem}
+.t-who{margin-top:1.3rem;color:var(--muted);font-size:.95rem}
+.t-who b{color:var(--ink)}
+.t-dots{display:flex;gap:.55rem;justify-content:center}
+.t-dot{width:9px;height:9px;border-radius:999px;background:#c9d8cf;transition:.3s;border:none}
+.t-dot.active{background:var(--emerald);width:28px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+.faq-list{max-width:780px;margin-inline:auto;display:grid;gap:.9rem}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+.faq-item.open{border-color:rgba(18,161,89,.4);box-shadow:0 16px 40px -24px rgba(7,39,28,.35)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.15rem 1.4rem;font-weight:600;text-align:left;font-size:1rem}
+.faq-q svg{width:20px;height:20px;transition:.3s;flex-shrink:0;color:var(--emerald-2)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 1.4rem 1.3rem;color:var(--muted)}
+.faq-item.open .faq-a{max-height:340px}
+.cta-card{position:relative;overflow:hidden;background:radial-gradient(600px 300px at 92% -20%,rgba(155,212,94,.32),transparent),linear-gradient(140deg,#0e3f2e,#06231a);border-radius:32px;padding:3.2rem 2.8rem;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.cta-card h2{max-width:540px}
+.cta-card p{color:#a9cbb8;margin-top:.7rem;max-width:480px}
+.cta-actions{display:flex;gap:.9rem;flex-wrap:wrap}
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.office{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.5rem}
+.office h4{font-size:1.05rem;margin-bottom:.5rem}
+.office p{color:var(--muted);font-size:.9rem}
+.office b{color:var(--forest)}
+footer{background:#061f16;color:#9dbfab;padding:66px 0 28px;margin-top:100px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:2.5rem}
+footer h4{color:#fff;margin-bottom:1rem;font-size:1rem}
+.foot-links{display:grid;gap:.55rem;font-size:.94rem}
+footer a:hover{color:var(--lime)}
+.socials{display:flex;gap:.7rem;margin-top:1.3rem}
+.socials a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.25s}
+.socials a:hover{background:var(--emerald);color:#04150e;transform:translateY(-2px)}
+.socials svg{width:18px;height:18px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:2.6rem;padding-top:1.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(4,20,14,.66);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:200;display:none;overflow-y:auto;padding:3vh 4%}
+.modal-backdrop.show{display:flex}
+.modal{background:var(--bg);border-radius:26px;width:min(720px,100%);margin:auto;box-shadow:0 40px 100px -30px rgba(0,0,0,.6);position:relative;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}}
+.modal-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(11,43,32,.08);font-size:1.15rem;display:grid;place-items:center;z-index:5;transition:.2s}
+.modal-x:hover{background:var(--mint)}
+.steps-bar{display:flex;gap:.4rem;padding:1.2rem 1.4rem 0}
+.sdot{flex:1;text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9fb5a8;padding-bottom:.6rem;border-bottom:3px solid var(--line);transition:.3s}
+.sdot.on{color:var(--emerald-2);border-color:var(--emerald)}
+.sdot.done{color:var(--emerald-2);border-color:rgba(18,161,89,.4)}
+.modal-body{padding:1.5rem 1.4rem 1.6rem}
+.bstep{display:none}
+.bstep.on{display:block;animation:fadeUp .35s ease}
+.m-title{font-size:1.3rem;letter-spacing:-.02em;margin-bottom:.3rem}
+.m-sub{color:var(--muted);font-size:.9rem;margin-bottom:1.1rem}
+.trip-sum{background:var(--mint);color:var(--forest);font-family:'Sora';font-weight:700;border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.1rem;font-size:1.05rem;letter-spacing:-.01em}
+.grid2m{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.lbl{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:1.1rem 0 .5rem}
+.t-chips{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.tchip{border:1.5px solid var(--line);border-radius:14px;padding:.8rem 1rem;text-align:left;background:#fff;transition:.2s}
+.tchip:hover{border-color:var(--emerald)}
+.tchip.on{border-color:var(--emerald);background:var(--mint);box-shadow:0 0 0 3px rgba(18,161,89,.15)}
+.tchip b{font-family:'Sora';font-size:1.05rem}
+.tchip span{display:block;font-size:.75rem;color:var(--muted)}
+.bnav{display:flex;justify-content:space-between;gap:.8rem;margin-top:1.4rem}
+.bus-info{display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap;background:var(--mint);border-radius:14px;padding:.8rem 1rem;margin-bottom:1rem;font-size:.85rem}
+.bus-info b{font-family:'Sora'}
+.bus-info span{color:#3c564b}
+.bus-wrap{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.2rem;max-width:420px;margin-inline:auto;width:100%}
+.bus-front{display:flex;justify-content:space-between;align-items:center;background:var(--forest);color:#fff;border-radius:12px 12px 30px 30px;padding:.65rem 1rem;font-size:.75rem;font-weight:700;letter-spacing:.12em}
+.seat-rows{display:grid;gap:.45rem;margin-top:1rem}
+.srow{display:flex;gap:.45rem;justify-content:center;align-items:center}
+.seat{width:40px;height:34px;border-radius:9px 9px 5px 5px;border:1.5px solid var(--line);background:#f2f6f3;font-size:.68rem;font-weight:700;color:#54706a;transition:.15s;display:grid;place-items:center;padding:0}
+.seat:hover{border-color:var(--emerald);transform:translateY(-1px)}
+.seat.sel{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.seat.taken{background:#e3e7e4;color:#a9b5af;border-color:transparent;cursor:not-allowed;text-decoration:line-through}
+.aisle{width:26px;flex-shrink:0}
+.legend{display:flex;gap:1.1rem;justify-content:center;margin-top:1rem;font-size:.78rem;color:var(--muted);flex-wrap:wrap}
+.lg{display:flex;gap:.4rem;align-items:center}
+.lg i{width:14px;height:14px;border-radius:4px;display:inline-block;border:1.5px solid var(--line);background:#f2f6f3}
+.lg .g{background:var(--emerald);border-color:var(--emerald)}
+.lg .t{background:#e3e7e4;border-color:transparent}
+.sel-note{text-align:center;font-weight:600;color:var(--emerald-2);margin-top:1rem;font-size:.92rem}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.paycard{border:1.5px solid var(--line);border-radius:14px;padding:.85rem 1rem;background:#fff;cursor:pointer;transition:.2s;text-align:left}
+.paycard:hover{border-color:var(--emerald)}
+.paycard.on{border-color:var(--emerald);background:var(--mint);box-shadow:0 0 0 3px rgba(18,161,89,.15)}
+.paycard b{display:block;font-size:.95rem}
+.paycard span{font-size:.76rem;color:var(--muted)}
+.sum-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem 1.2rem;margin-top:1.2rem}
+.sum-row{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.sum-row:last-child{border:none}
+.sum-row span{color:var(--muted)}
+.sum-row b{font-family:'Sora';text-align:right}
+.sum-row.total b{color:var(--forest);font-size:1.12rem}
+#mpesaStatus p{margin-top:.3rem}
+#mpesaStatus b{font-family:'Sora'}
+
+/* ---- M-Pesa checkout prompt page (step 4) ---- */
+.mpesa-stage{display:flex;justify-content:center;padding:.4rem 0 .1rem}
+.mpesa-phone{width:min(340px,100%);background:#06231a;border-radius:34px;padding:10px;box-shadow:var(--shadow-lg)}
+.mpesa-screen{background:#eef2ee;border-radius:24px;overflow:hidden;min-height:440px;display:flex;flex-direction:column}
+.mpesa-head{background:linear-gradient(120deg,#0e3f2e,#12a159);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.mpesa-head b{font-family:'Sora';letter-spacing:.14em;font-size:.95rem}
+.mpesa-clock{font-weight:700;font-size:.78rem;background:rgba(255,255,255,.18);padding:.2rem .6rem;border-radius:999px;white-space:nowrap}
+.mpesa-timer{height:3px;background:rgba(255,255,255,.25)}
+.mpesa-timer i{display:block;height:100%;background:var(--lime);transition:width 1s linear}
+.mpesa-body{flex:1;padding:.95rem;display:flex;flex-direction:column;gap:.65rem}
+.mpesa-req{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.85rem .95rem;font-size:.85rem;color:#2c463b;line-height:1.55}
+.mpesa-req .mp{font-family:'Sora';font-weight:800;color:var(--forest);font-size:1.02rem;margin-bottom:.2rem;letter-spacing:.02em}
+.mpesa-msisdn{font-size:.8rem;color:var(--muted);text-align:center;font-weight:600}
+.mpesa-pinrow{display:flex;gap:.55rem;justify-content:center}
+.mpesa-pinrow i{width:44px;height:46px;border-radius:12px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;font-size:1.4rem;color:var(--forest);font-weight:800;transition:.15s;font-style:normal}
+.mpesa-pinrow i.f{border-color:var(--emerald);background:var(--mint)}
+.mpesa-key{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.mpesa-key button{height:46px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:1.05rem;font-family:'Sora';color:var(--ink);transition:.12s;cursor:pointer}
+.mpesa-key button:hover{border-color:var(--emerald);background:var(--mint)}
+.mpesa-key button:active{transform:scale(.94)}
+.mpesa-actions{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.15rem}
+.mpesa-btn{padding:.72rem;border-radius:12px;font-weight:700;font-size:.85rem;letter-spacing:.05em;border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:.15s;cursor:pointer}
+.mpesa-btn:hover{border-color:var(--emerald)}
+.mpesa-btn.solid{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.mpesa-btn.solid:hover{filter:brightness(1.07)}
+.mpesa-btn[disabled]{opacity:.45;pointer-events:none}
+.mpesa-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;text-align:center;font-size:.9rem;color:#2c463b;line-height:1.6}
+.mpesa-center b{font-family:'Sora';font-size:1.02rem}
+.mpesa-spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(18,161,89,.25);border-top-color:var(--emerald);animation:spin .8s linear infinite}
+.mpesa-big{font-size:2.1rem;line-height:1}
+.mpesa-caption{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.6rem}
+
+.ticket-view{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.tv-top{background:linear-gradient(135deg,var(--forest),#0a4a32);color:#fff;padding:1.15rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.tv-brand{font-family:'Sora';font-weight:800;font-size:1.05rem;letter-spacing:.04em}
+.tv-brand small{display:block;font-family:'Inter';font-weight:500;font-size:.72rem;color:#9dc3ad;letter-spacing:0}
+.tv-ref{font-family:'Sora';font-weight:800;font-size:1.25rem;letter-spacing:.08em}
+.tv-ref small{display:block;font-family:'Inter';font-weight:500;font-size:.68rem;color:#9dc3ad;letter-spacing:.06em;text-transform:uppercase}
+.tv-status{padding:.4rem 1rem;border-radius:999px;background:var(--lime);color:#06231a;font-weight:800;font-size:.78rem;letter-spacing:.08em}
+.tv-status.res{background:var(--amber);color:#4a2c00}
+.tv-body{padding:1.4rem;display:grid;gap:1.1rem}
+.tv-route{font-family:'Sora';font-weight:800;font-size:1.45rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.tv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.tv-cell small{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:.15rem}
+.tv-cell b{font-family:'Sora';font-size:.93rem;font-weight:700;word-break:break-word}
+.tv-line{border-top:1px dashed var(--line);padding-top:1rem}
+.tv-note{font-size:.78rem;color:var(--muted)}
+.tv-bar{height:46px;border-radius:6px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 9px,var(--ink) 9px 12px,transparent 12px 14px)}
+.tv-actions{display:flex;gap:.7rem;flex-wrap:wrap;padding:1.3rem 1.4rem 1.4rem}
+.demo-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.9rem}
+.lookup-row{display:flex;gap:.6rem}
+.lookup-row input{flex:1;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:#f6faf7;font:inherit;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.lookup-row input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 4px rgba(18,161,89,.14)}
+
+@media print{
+  body{background:#fff}
+  body *{visibility:hidden}
+  .ticket-view,.ticket-view *{visibility:visible}
+  .ticket-view{position:fixed;inset:0;background:#fff;box-shadow:none;border:none;z-index:999;overflow:visible}
+}
+
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:2.8rem}
+  .hero-art{max-width:580px;margin-inline:auto;width:100%}
+  .book-form{grid-template-columns:repeat(3,1fr)}
+  .fares-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .burger{display:flex}
+  .menu{position:fixed;top:66px;left:4%;right:4%;flex-direction:column;align-items:stretch;background:rgba(7,34,25,.97);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:1.2rem;gap:.9rem;opacity:0;transform:translateY(-12px);pointer-events:none;transition:.3s;backdrop-filter:blur(16px);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+  .menu.open{opacity:1;transform:none;pointer-events:auto}
+  .menu .btn{width:100%}
+  .hero{padding:124px 0 118px}
+  .hero-stats{gap:1.6rem}
+  .book-form{grid-template-columns:1fr 1fr}
+  .book-foot{flex-direction:column;align-items:stretch}
+  .book-actions{align-items:stretch}
+  .btn-row .btn{flex:1}
+  .pay-note{justify-content:flex-start}
+  .fares-grid,.class-grid,.why-grid,.offices{grid-template-columns:1fr}
+  .impact{grid-template-columns:1fr}
+  .cta-card{padding:2.3rem 1.7rem}
+  .c1{right:0}.c2{left:0}.c3{right:2%}
+  .chip b{font-size:.92rem}
+  .t-chips,.pay-grid,.grid2m{grid-template-columns:1fr}
+  .tv-grid{grid-template-columns:1fr 1fr}
+  .lookup-row{flex-direction:column}
+  .modal-body{padding:1.3rem 1.1rem 1.4rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner wrap">
+    <a class="brand" href="#top" aria-label="Eco Bus home">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true">
+        <defs><linearGradient id="lgLogo" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#12a159"/><stop offset="1" stop-color="#c9f26f"/>
+        </linearGradient></defs>
+        <rect width="40" height="40" rx="12" fill="url(#lgLogo)"/>
+        <path d="M20 8c-7 2.5-9.5 8-8.5 13.5C12.4 26.6 16 30 20.5 30c4 0 7.4-2.8 8-6.8C29.5 16 24 9.5 20 8zm0 19V13" fill="none" stroke="#06231a" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span>eco<b>bus</b></span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="#fares">Fares</a>
+      <a href="#classes">Experience</a>
+      <a href="#why">Why Eco</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" id="navLookup">My Booking</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary btn-sm" href="#book">Book a seat</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill">🚌 Now linking Kampala · Nairobi · Juba</span>
+      <h1>Ride the <em>green line</em> across East Africa.</h1>
+      <p class="lede">Eco Bus connects the region's capitals with modern, low-emission coaches — pick your seat, pay by M-Pesa prompt, and get your <strong style="color:#fff">e-ticket instantly</strong>. Fares from <strong style="color:#fff">KSh 4,500</strong>.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Book a seat
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#fares">See all fares</a>
+      </div>
+      <ul class="hero-stats">
+        <li><b><span data-count="3">0</span></b><span>capital cities linked</span></li>
+        <li><b>KSh <span data-count="4500">0</span></b><span>lowest seat fare</span></li>
+        <li><b><span data-count="98">0</span>%</b><span>on-time arrivals</span></li>
+      </ul>
+    </div>
+    <div class="hero-art">
+      <div class="map-card">
+        <svg class="map" viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Route map connecting Kampala, Nairobi and Juba">
+          <defs><linearGradient id="lgPin" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#c9f26f"/><stop offset="1" stop-color="#2fd07f"/>
+          </linearGradient></defs>
+          <ellipse cx="180" cy="330" rx="155" ry="92" fill="rgba(255,255,255,.05)"/>
+          <ellipse cx="420" cy="300" rx="120" ry="82" fill="rgba(255,255,255,.05)"/>
+          <ellipse cx="335" cy="110" rx="115" ry="72" fill="rgba(255,255,255,.05)"/>
+          <path id="p1" class="route-line" d="M120 350 C 210 300, 320 285, 430 318"/>
+          <path id="p2" class="route-line" d="M430 318 C 470 235, 415 140, 335 92"/>
+          <path id="p3" class="route-line" d="M120 350 C 140 235, 210 130, 335 92"/>
+          <g><circle class="pin-ring" cx="120" cy="350" r="14"/><circle cx="120" cy="350" r="9" fill="url(#lgPin)"/><circle cx="120" cy="350" r="3.5" fill="#06231a"/></g>
+          <g><circle class="pin-ring" cx="430" cy="318" r="14" style="animation-delay:-1s"/><circle cx="430" cy="318" r="9" fill="url(#lgPin)"/><circle cx="430" cy="318" r="3.5" fill="#06231a"/></g>
+          <g><circle class="pin-ring" cx="335" cy="92" r="14" style="animation-delay:-2s"/><circle cx="335" cy="92" r="9" fill="url(#lgPin)"/><circle cx="335" cy="92" r="3.5" fill="#06231a"/></g>
+          <text x="120" y="388" text-anchor="middle">🇺🇬 Kampala</text>
+          <text x="430" y="356" text-anchor="middle">🇰🇪 Nairobi</text>
+          <text x="335" y="68" text-anchor="middle">🇸🇸 Juba</text>
+          <g opacity=".96">
+            <rect x="-15" y="-10" width="30" height="17" rx="6" fill="#eaf7ee"/>
+            <rect x="-11" y="-7" width="8" height="6" rx="2" fill="#12a159"/>
+            <rect x="0" y="-7" width="8" height="6" rx="2" fill="#12a159"/>
+            <circle cx="-8" cy="8" r="3.6" fill="#06231a"/><circle cx="8" cy="8" r="3.6" fill="#06231a"/>
+            <animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#p1" xlink:href="#p1"/></animateMotion>
+          </g>
+        </svg>
+      </div>
+      <div class="chip c1"><small>Nairobi → Juba</small><b>KSh 10,000</b></div>
+      <div class="chip c2"><small>Kampala → Nairobi</small><b>KSh 4,500</b></div>
+      <div class="chip c3"><small>Juba → Kampala · Business</small><b>SSP 350,000</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="m-item">KAMPALA → NAIROBI · KSh 4,500</span>
+    <span class="m-item">NAIROBI → KAMPALA · KSh 4,500</span>
+    <span class="m-item">JUBA → KAMPALA · SSP 250K / 350K</span>
+    <span class="m-item">NAIROBI → JUBA · KSh 10,000</span>
+    <span class="m-item">KAMPALA → JUBA · UGX 200,000</span>
+    <span class="m-item">KAMPALA → NAIROBI · KSh 4,500</span>
+    <span class="m-item">NAIROBI → KAMPALA · KSh 4,500</span>
+    <span class="m-item">JUBA → KAMPALA · SSP 250K / 350K</span>
+    <span class="m-item">NAIROBI → JUBA · KSh 10,000</span>
+    <span class="m-item">KAMPALA → JUBA · UGX 200,000</span>
+  </div>
+</div>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="book-card reveal">
+      <div class="book-head">
+        <div>
+          <h2>Book your seat</h2>
+          <p class="book-sub">Live fare estimate · pay with M-Pesa prompt · e-ticket instantly</p>
+        </div>
+        <button class="swap" id="swapBtn" title="Swap origin and destination">⇄ Swap</button>
+      </div>
+      <form class="book-form" id="bookForm" onsubmit="return false">
+        <div class="field"><label for="from">From</label>
+          <select id="from">
+            <option value="kampala" selected>Kampala 🇺🇬</option>
+            <option value="nairobi">Nairobi 🇰🇪</option>
+            <option value="juba">Juba 🇸🇸</option>
+          </select>
+        </div>
+        <div class="field"><label for="to">To</label>
+          <select id="to">
+            <option value="nairobi" selected>Nairobi 🇰🇪</option>
+            <option value="kampala">Kampala 🇺🇬</option>
+            <option value="juba">Juba 🇸🇸</option>
+          </select>
+        </div>
+        <div class="field"><label for="date">Travel date</label><input type="date" id="date"></div>
+        <div class="field"><label for="class">Class</label>
+          <select id="class">
+            <option value="standard" selected>Standard / Economy</option>
+            <option value="business">Business</option>
+          </select>
+        </div>
+        <div class="field"><label for="pax">Passengers</label>
+          <select id="pax">
+            <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+          </select>
+        </div>
+      </form>
+      <div class="book-foot">
+        <div class="quote">
+          <small>Estimated total · <span id="quoteMeta"></span></small>
+          <strong id="quotePrice">—</strong>
+          <span class="quote-note" id="quoteNote"></span>
+        </div>
+        <div class="book-actions">
+          <div class="btn-row">
+            <button class="btn btn-primary" id="openBook" type="button">Choose seats &amp; book
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <a class="btn btn-line" id="waBtn" href="#" target="_blank" rel="noopener">Ask on WhatsApp
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.2-1.3A10 10 0 1 0 12 2zm5.6 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1a14 14 0 0 1-6.9-6c-.5-.9-.8-1.9-.5-2.7.2-.5.7-1.3 1.2-1.4h.9c.3 0 .5.2.7.6l1 2.3c.1.3 0 .5-.1.7l-.7.8c-.2.2-.3.4-.1.7a10 10 0 0 0 4.6 4c.3.1.5.1.7-.1l1-1.2c.2-.3.4-.3.7-.2l2.3 1.1c.3.2.5.3.5.6 0 .1 0 .5-.1.9z"/></svg></a>
+          </div>
+          <div class="pay-note"><span class="pay">M-Pesa STK</span><span class="pay">MTN MoMo</span><span class="pay">Airtel Money</span><span class="pay">Pay at office</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fares">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Fares &amp; routes</span>
+      <h2>Every border, one fair price.</h2>
+      <p class="sec-sub">All fares are per seat and include baggage allowance. Business class runs on the flagship Juba ⇄ Kampala line. Every booking comes with an instant e-ticket &amp; receipt.</p>
+    </div>
+    <div class="fares-grid">
+      <article class="fare reveal d1">
+        <div class="fare-top"><span class="flags">🇺🇬 → 🇰🇪</span><span class="badge">Standard</span></div>
+        <h3>Kampala → Nairobi</h3>
+        <p class="dur">≈ 12 hrs · border: Busia / Malaba</p>
+        <div class="price"><small>KSh</small>4,500 <span>/ seat</span></div>
+        <ul class="incl"><li>Reclining padded seat</li><li>Air-conditioned cabin</li><li>USB charging at every seat</li><li>Bottled water &amp; snacks</li></ul>
+        <button class="btn btn-dark book-btn" data-from="kampala" data-to="nairobi">Book this route</button>
+      </article>
+      <article class="fare reveal d2">
+        <div class="fare-top"><span class="flags">🇰🇪 → 🇺🇬</span><span class="badge">Standard</span></div>
+        <h3>Nairobi → Kampala</h3>
+        <p class="dur">≈ 12 hrs · border: Busia / Malaba</p>
+        <div class="price"><small>KSh</small>4,500 <span>/ seat</span></div>
+        <ul class="incl"><li>Reclining padded seat</li><li>Air-conditioned cabin</li><li>USB charging at every seat</li><li>Bottled water &amp; snacks</li></ul>
+        <button class="btn btn-dark book-btn" data-from="nairobi" data-to="kampala">Book this route</button>
+      </article>
+      <article class="fare reveal d3">
+        <div class="fare-top"><span class="flags">🇰🇪 → 🇸🇸</span><span class="badge">Standard</span></div>
+        <h3>Nairobi → Juba</h3>
+        <p class="dur">≈ 20 hrs · border: Nadapal</p>
+        <div class="price"><small>KSh</small>10,000 <span>/ seat</span></div>
+        <ul class="incl"><li>Reserved long-haul seat</li><li>AC + reading light</li><li>2 × 25 kg baggage</li><li>Border assistance</li></ul>
+        <button class="btn btn-dark book-btn" data-from="nairobi" data-to="juba">Book this route</button>
+      </article>
+      <article class="fare reveal d4">
+        <div class="fare-top"><span class="flags">🇺🇬 → 🇸🇸</span><span class="badge">Standard</span></div>
+        <h3>Kampala → Juba</h3>
+        <p class="dur">≈ 14 hrs · border: Elegu / Nimule</p>
+        <div class="price"><small>UGX</small>200,000 <span>/ seat</span></div>
+        <ul class="incl"><li>Reserved long-haul seat</li><li>AC + reading light</li><li>2 × 25 kg baggage</li><li>Border assistance</li></ul>
+        <button class="btn btn-dark book-btn" data-from="kampala" data-to="juba">Book this route</button>
+      </article>
+      <article class="fare reveal d5">
+        <div class="fare-top"><span class="flags">🇸🇸 → 🇺🇬</span><span class="badge">Economy</span></div>
+        <h3>Juba → Kampala</h3>
+        <p class="dur">≈ 14 hrs · border: Nimule / Elegu</p>
+        <div class="price"><small>SSP</small>250,000 <span>/ seat</span></div>
+        <ul class="incl"><li>Reserved economy seat</li><li>AC + reading light</li><li>2 × 25 kg baggage</li><li>Border assistance</li></ul>
+        <button class="btn btn-dark book-btn" data-from="juba" data-to="kampala" data-class="standard">Book this route</button>
+      </article>
+      <article class="fare featured reveal d6">
+        <div class="fare-top"><span class="flags">🇸🇸 → 🇺🇬</span><span class="badge biz">★ Business</span></div>
+        <h3>Juba → Kampala</h3>
+        <p class="dur">≈ 14 hrs · flagship line</p>
+        <div class="price"><small>SSP</small>350,000 <span>/ seat</span></div>
+        <ul class="incl"><li>2-1 seating, extra legroom</li><li>Hot meal &amp; drinks</li><li>Onboard Wi-Fi</li><li>Blanket, pillow &amp; priority boarding</li></ul>
+        <button class="btn btn-primary book-btn" data-from="juba" data-to="kampala" data-class="business">Book business</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section classes" id="classes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The experience</span>
+      <h2>Two cabins. Zero compromises.</h2>
+      <p class="sec-sub">Whether you ride Standard or fly-at-road-level Business, every seat gets power, climate control and a crew that actually cares.</p>
+    </div>
+    <div class="class-grid">
+      <article class="class-card reveal d1">
+        <h3>Standard / Economy <span class="badge">Most popular</span></h3>
+        <p class="routes">Uganda ⇄ Nairobi · Nairobi → Juba · Kampala → Juba · Juba → Kampala</p>
+        <ul class="incl">
+          <li>Reserved reclining seat with headrest</li>
+          <li>Fully air-conditioned cabin</li>
+          <li>USB charging at every seat</li>
+          <li>Bottled water &amp; light snacks</li>
+          <li>Crew-assisted border crossing</li>
+        </ul>
+        <p class="price-lg">From KSh 4,500 <span>· SSP 250,000 on the Juba line</span></p>
+      </article>
+      <article class="class-card biz-card reveal d2">
+        <h3>Business <span class="badge biz">★ Flagship</span></h3>
+        <p class="routes">Juba ⇄ Kampala premium line</p>
+        <ul class="incl">
+          <li>2-1 seating with generous legroom</li>
+          <li>Hot meal &amp; drinks served on board</li>
+          <li>Onboard Wi-Fi</li>
+          <li>Blanket, pillow &amp; comfort kit</li>
+          <li>Priority boarding &amp; luggage handling</li>
+        </ul>
+        <p class="price-lg">SSP 350,000 <span>per seat</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Eco Bus</span>
+      <h2>Comfort that doesn't cost the earth.</h2>
+      <p class="sec-sub">One full coach takes up to 20 cars off the road. We keep our fleet modern, our driving disciplined and our prices honest.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1"><div class="ic">🌿</div><h3>Planet-first coaches</h3><p>A modern, low-emission fleet maintained to standard — the greenest way to cross these borders.</p></div>
+      <div class="why-card reveal d2"><div class="ic">🛡️</div><h3>Safety without shortcuts</h3><p>GPS-tracked coaches, governed speed and two drivers on every overnight run.</p></div>
+      <div class="why-card reveal d3"><div class="ic">⚡</div><h3>Power at every seat</h3><p>USB-C charging at every chair, so you arrive with your phone as full as your belly.</p></div>
+      <div class="why-card reveal d4"><div class="ic">❄️</div><h3>Chill all the way</h3><p>Climate control tuned for equatorial heat, highland chill and everything between.</p></div>
+      <div class="why-card reveal d5"><div class="ic">📶</div><h3>Wi-Fi on Business</h3><p>Stream, scroll or work between borders on our flagship Juba ⇄ Kampala cabin.</p></div>
+      <div class="why-card reveal d6"><div class="ic">🛂</div><h3>Border buddies</h3><p>Our crew walks you through immigration paperwork at every crossing — no guesswork.</p></div>
+    </div>
+    <!-- TODO: replace these sample figures with your real numbers -->
+    <div class="impact reveal">
+      <div><b><span data-count="12400">0</span>+</b><span>travellers moved across East Africa</span></div>
+      <div><b><span data-count="38000">0</span> kg</b><span>of CO₂ saved vs. car travel</span></div>
+      <div><b><span data-count="98">0</span>%</b><span>on-time arrivals this year</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stories" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">Passenger stories</span>
+      <h2>Loved at every border.</h2>
+    </div>
+    <div class="t-wrap reveal">
+      <div class="t-slide active"><p class="t-quote">Crossed Kampala–Nairobi overnight and woke up at the border with the stamps already sorted. Easiest trip I've ever made.</p><p class="t-who"><b>Aisha K.</b> · trader · Kampala → Nairobi</p></div>
+      <div class="t-slide"><p class="t-quote">Business class to Kampala is genuinely airline-like. The hot meal and Wi-Fi were a very pleasant surprise.</p><p class="t-who"><b>Deng M.</b> · engineer · Juba → Kampala</p></div>
+      <div class="t-slide"><p class="t-quote">Got the M-Pesa prompt, keyed my PIN, and the e-ticket was on my screen before I locked my phone.</p><p class="t-who"><b>Brian O.</b> · student · Nairobi → Juba</p></div>
+      <div class="t-dots" role="tablist" aria-label="Testimonials">
+        <button class="t-dot active" aria-label="Story 1"></button>
+        <button class="t-dot" aria-label="Story 2"></button>
+        <button class="t-dot" aria-label="Story 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-inline:auto">
+      <span class="eyebrow">Good to know</span>
+      <h2>Frequently asked questions.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">How does the M-Pesa payment work?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Choose M-Pesa at checkout and enter your Safaricom number. We send a <b>STK push prompt</b> to your phone — enter your M-Pesa PIN and the site confirms your payment automatically, then issues your e-ticket with the M-Pesa receipt code.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Will I get a ticket and a receipt?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Yes — the moment your booking is confirmed you get an e-ticket showing your seat number, bus and departure time, plus a payment receipt. Both can be downloaded as PDF, and you can always retrieve them under <b>My Booking</b> using your reference code (e.g. ECO-7K2M9X).</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">What is the baggage allowance?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Each passenger may check in two pieces up to 50 kg total (25 kg per piece on long-haul routes) plus one hand luggage. Extra kilograms are charged per route at the terminal.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Do you help with border procedures?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Yes. Our crew guides every passenger through immigration at Busia/Malaba (Uganda–Kenya), Elegu/Nimule (Uganda–South Sudan) and Nadapal (Kenya–South Sudan). Visa fees are not included in the fare.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I cancel or change my booking?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Changes are free up to 12 hours before departure. Cancellations made more than 12 hours ahead receive an 80% refund; later cancellations can be converted into travel credit.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Do children pay full fare?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Children under 4 travel free on a parent's lap (one per adult). Ages 4–11 pay half fare on Standard, and full fare in Business where seats are individually reserved.</p></div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false">Is food included?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Business class includes a hot meal and drinks. Standard passengers receive bottled water and snacks, with meals available for purchase at rest stops.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div>
+        <h2>Ready to roll with Eco Bus?</h2>
+        <p>Lock your seat in under two minutes — get the M-Pesa prompt, key your PIN, grab your e-ticket, and leave the traffic (and the carbon) behind.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://wa.me/254780045322?text=Hello%20Eco%20Bus!%20I%27d%20like%20to%20book%20a%20seat." target="_blank" rel="noopener">WhatsApp us</a>
+        <a class="btn btn-ghost" href="tel:+254780045322">Call 0780 045 322</a>
+      </div>
+    </div>
+    <!-- TODO: replace office addresses -->
+    <div class="offices">
+      <div class="office reveal d1"><h4>🇺🇬 Kampala terminal</h4><p><b>Address:</b> Plot 12, Kampala Road<br><b>Phone:</b> 0780 045 322<br><b>Hours:</b> Daily 06:00 – 22:00</p></div>
+      <div class="office reveal d2"><h4>🇰🇪 Nairobi terminal</h4><p><b>Address:</b> Haile Selassie Ave, near Railway Station<br><b>Phone:</b> 0780 045 322<br><b>Hours:</b> Daily 06:00 – 22:00</p></div>
+      <div class="office reveal d3"><h4>🇸🇸 Juba terminal</h4><p><b>Address:</b> Custom Market area, Juba<br><b>Phone:</b> 0780 045 322<br><b>Hours:</b> Daily 06:00 – 20:00</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:1rem"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#12a159"/><path d="M20 8c-7 2.5-9.5 8-8.5 13.5C12.4 26.6 16 30 20.5 30c4 0 7.4-2.8 8-6.8C29.5 16 24 9.5 20 8zm0 19V13" fill="none" stroke="#06231a" stroke-width="2.6" stroke-linecap="round"/></svg><span>eco<b>bus</b></span></a>
+        <p style="font-size:.95rem;max-width:34ch">Connecting East Africa's capitals with comfortable, affordable, lower-carbon coach travel.</p>
+        <div class="socials">
+          <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l7.2 9.3L4.4 20h2.5l5.3-5.1L16.8 20H20l-7.5-9.7L19.4 4h-2.5l-4.7 4.6L8.2 4H4z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h2.5V4.5H14c-2.8 0-4.5 1.7-4.5 4.5v2H7v3.5h2.5V21h3.5v-6.5h2.7l.5-3.5h-3.2V9c0-.7.3-1 1-1z"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Routes</h4><div class="foot-links">
+        <a href="#fares">Kampala ⇄ Nairobi</a><a href="#fares">Juba ⇄ Kampala</a>
+        <a href="#fares">Nairobi → Juba</a><a href="#fares">Kampala → Juba</a></div></div>
+      <div><h4>Company</h4><div class="foot-links">
+        <a href="#classes">Experience</a><a href="#why">Why Eco</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div></div>
+      <div><h4>Reach us</h4><div class="foot-links">
+        <a href="https://wa.me/254780045322" target="_blank" rel="noopener">WhatsApp: 0780 045 322</a>
+        <a href="mailto:hello@ecobus.africa">hello@ecobus.africa</a>
+        <span>Kampala · Nairobi · Juba</span></div></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Eco Bus. Fares shown per listed currency.</span>
+      <span>Made with 💚 in East Africa</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="modal-backdrop" id="bookModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Book a seat">
+    <button class="modal-x" data-close="bookModal" aria-label="Close">✕</button>
+    <div class="steps-bar" id="stepsBar">
+      <div class="sdot on">1 · Trip</div><div class="sdot">2 · Seats</div><div class="sdot">3 · Pay</div><div class="sdot">4 · M-Pesa</div><div class="sdot">5 · Ticket</div>
+    </div>
+    <div class="modal-body">
+
+      <section class="bstep on" data-bstep="1">
+        <h3 class="m-title">Trip details</h3>
+        <p class="m-sub">Pick your date and departure — each departure has its own bus.</p>
+        <div class="trip-sum" id="tripSum"></div>
+        <div class="grid2m">
+          <div class="field"><label for="bDate">Travel date</label><input type="date" id="bDate"></div>
+          <div class="field"><label for="bPax">Passengers</label>
+            <select id="bPax"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>
+          </div>
+          <div class="field" id="bClassWrap"><label for="bClass">Class</label>
+            <select id="bClass"><option value="standard">Economy</option><option value="business">Business</option></select>
+          </div>
+        </div>
+        <label class="lbl">Departure time &amp; bus</label>
+        <div class="t-chips" id="timeChips"></div>
+        <div class="bnav"><span></span><button class="btn btn-primary" id="toSeats">Choose seats →</button></div>
+      </section>
+
+      <section class="bstep" data-bstep="2">
+        <h3 class="m-title">Pick your seats</h3>
+        <p class="m-sub">Tap a seat to select it. Your seat numbers appear on the e-ticket.</p>
+        <div class="bus-info" id="busInfo"></div>
+        <div class="bus-wrap">
+          <div class="bus-front"><span>🚌 DRIVER</span><span>FRONT</span></div>
+          <div class="seat-rows" id="seatRows"></div>
+          <div class="legend">
+            <span class="lg"><i></i> Available</span>
+            <span class="lg"><i class="g"></i> Selected</span>
+            <span class="lg"><i class="t"></i> Taken</span>
+          </div>
+        </div>
+        <p class="sel-note" id="selNote"></p>
+        <div class="bnav">
+          <button class="btn btn-dark" id="back1">← Back</button>
+          <button class="btn btn-primary" id="toDetails">Continue →</button>
+        </div>
+      </section>
+
+      <section class="bstep" data-bstep="3">
+        <h3 class="m-title">Passenger &amp; payment</h3>
+        <p class="m-sub">The e-ticket will be issued in this name — carry a matching ID when boarding.</p>
+        <div class="grid2m">
+          <div class="field"><label for="bName">Full name</label><input id="bName" placeholder="e.g. Aisha Nalubega"></div>
+          <div class="field"><label for="bPhone">WhatsApp phone</label><input id="bPhone" type="tel" placeholder="e.g. 0780 045 322"></div>
+        </div>
+        <label class="lbl">Payment method</label>
+        <div class="pay-grid" id="payGrid">
+          <button type="button" class="paycard on" data-method="M-Pesa"><b>M-Pesa</b><span>STK prompt — enter PIN on your phone</span></button>
+          <button type="button" class="paycard" data-method="MTN MoMo"><b>MTN MoMo</b><span>Mobile money</span></button>
+          <button type="button" class="paycard" data-method="Airtel Money"><b>Airtel Money</b><span>Mobile money</span></button>
+          <button type="button" class="paycard" data-method="Pay at office"><b>Pay at office</b><span>Reserve now, pay before departure</span></button>
+        </div>
+        <div class="field" id="mpesaPhoneWrap" style="display:none;margin-top:.9rem">
+          <label for="bMpesaPhone">M-Pesa number to prompt (Safaricom)</label>
+          <input id="bMpesaPhone" type="tel" placeholder="07XX XXX XXX">
+        </div>
+        <div class="sum-box" id="sumBox"></div>
+        <div class="sum-box" id="mpesaStatus" style="display:none"></div>
+        <div class="bnav">
+          <button class="btn btn-dark" id="back2">← Back</button>
+          <button class="btn btn-primary" id="payBtn">Pay &amp; get e-ticket</button>
+        </div>
+      </section>
+
+      <section class="bstep" data-bstep="4">
+        <h3 class="m-title">M-Pesa checkout</h3>
+        <p class="m-sub">Confirm the M-Pesa prompt below — don't close this window until your e-ticket is issued.</p>
+        <div class="mpesa-stage">
+          <div class="mpesa-phone">
+            <div class="mpesa-screen">
+              <div class="mpesa-head"><b>M-PESA</b><span class="mpesa-clock" id="mpesaClock">1:00</span></div>
+              <div class="mpesa-timer" aria-hidden="true"><i id="mpesaTimerBar" style="width:100%"></i></div>
+              <div class="mpesa-body" id="mpesaBody"></div>
+            </div>
+          </div>
+        </div>
+        <p class="mpesa-caption" id="mpesaCaption"></p>
+        <div class="bnav">
+          <button class="btn btn-dark" id="mpesaBackBtn">← Cancel payment</button>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="bstep" data-bstep="5">
+        <h3 class="m-title" id="t4Title">You're booked! 🎉</h3>
+        <p class="m-sub">Save or print your ticket — present the booking reference at boarding.</p>
+        <div id="ticketView"></div>
+        <div class="tv-actions">
+          <button class="btn btn-primary" id="dlTicket">⬇ Download ticket (PDF)</button>
+          <button class="btn btn-dark" id="dlReceipt">⬇ Download receipt (PDF)</button>
+          <button class="btn btn-dark" id="waShare">Send to WhatsApp</button>
+          <button class="btn btn-dark" id="newBook">Book another</button>
+        </div>
+        <p class="demo-note">M-Pesa pays for real once MPESA_ENDPOINT is configured — see the README in ecobus-mpesa-api. MTN MoMo &amp; Airtel are still demo-simulated.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ LOOKUP MODAL ============ -->
+<div class="modal-backdrop" id="lookupModal" aria-hidden="true">
+  <div class="modal" style="max-width:540px" role="dialog" aria-modal="true" aria-label="Find my booking">
+    <button class="modal-x" data-close="lookupModal" aria-label="Close">✕</button>
+    <div class="modal-body">
+      <h3 class="m-title">Find my booking</h3>
+      <p class="m-sub">Enter the booking reference from your e-ticket (e.g. ECO-7K2M9X) to view your ticket and receipt again.</p>
+      <div class="lookup-row">
+        <input id="refInput" placeholder="ECO-XXXXXX" aria-label="Booking reference">
+        <button class="btn btn-primary" id="refBtn">Find</button>
+      </div>
+      <div id="lookupResult"></div>
+      <div class="tv-actions" id="lookupActions" style="padding:1rem 0 0"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+/* =================== CONFIG =================== */
+/* WhatsApp: 0780 045 322 (+254780045322) → wa.me needs international format 254780045322 */
+const WA_NUMBER = "254780045322";
+
+/* M-Pesa live payments (Safaricom Daraja STK Push).
+   Backend: the ecobus-mpesa-api folder (api/mpesa-stk.js, mpesa-status.js,
+   mpesa-callback.js for Vercel — your sandbox credentials are already inside).
+   1) `vercel --prod` inside ecobus-mpesa-api, then paste the two URLs below.
+   2) Sandbox only prompts the test MSISDNs on your Daraja portal
+      (Test Credentials page) — other numbers get "Invalid PartyA".
+   Leave both empty to keep demo (simulated) payments. */
+const MPESA_ENDPOINT = ""; // e.g. "https://eco-bus-api.vercel.app/api/mpesa-stk"
+const MPESA_STATUS   = ""; // e.g. "https://eco-bus-api.vercel.app/api/mpesa-status"
+
+const FARES = {
+  "kampala>nairobi": { amount: 4500,   currency: "KSh" },
+  "nairobi>kampala": { amount: 4500,   currency: "KSh" },
+  "nairobi>juba":    { amount: 10000,  currency: "KSh" },
+  "kampala>juba":    { amount: 200000, currency: "UGX" },
+  "juba>kampala": {
+    economy:  { amount: 250000, currency: "SSP" },
+    business: { amount: 350000, currency: "SSP" }
+  }
+};
+const DUR = {
+  "kampala>nairobi": "≈ 12 hrs · border: Busia / Malaba",
+  "nairobi>kampala": "≈ 12 hrs · border: Busia / Malaba",
+  "juba>kampala":    "≈ 14 hrs · border: Nimule / Elegu",
+  "nairobi>juba":    "≈ 20 hrs · border: Nadapal",
+  "kampala>juba":    "≈ 14 hrs · border: Elegu / Nimule"
+};
+const TERMINALS = {
+  kampala: "Kampala Terminal — Plot 12, Kampala Road",
+  nairobi: "Nairobi Terminal — Haile Selassie Ave",
+  juba:    "Juba Terminal — Custom Market Area"
+};
+const SCHEDULE = {
+  "kampala>nairobi": [
+    { time:"19:30", bus:"Eco Liner 01", plate:"UAX 001K", type:"48-Seater Sleeper Coach", seats:48, layout:"2-2", arr:"07:30 (+1 day)" },
+    { time:"21:00", bus:"Eco Liner 04", plate:"KDF 772X", type:"48-Seater Sleeper Coach", seats:48, layout:"2-2", arr:"09:00 (+1 day)" }
+  ],
+  "nairobi>kampala": [
+    { time:"20:00", bus:"Eco Liner 02", plate:"KDA 101X", type:"48-Seater Coach", seats:48, layout:"2-2", arr:"08:00 (+1 day)" }
+  ],
+  "juba>kampala": [
+    { time:"06:00", bus:"Eco Star 07", plate:"SS 4452", type:"15-Seater Business", seats:15, layout:"2-1", biz:true, arr:"20:00" },
+    { time:"13:00", bus:"Eco Star 09", plate:"SS 7781", type:"32-Seater Economy",  seats:32, layout:"2-2", arr:"03:00 (+1 day)" }
+  ],
+  "nairobi>juba": [
+    { time:"17:00", bus:"Eco Voyager 03", plate:"KCX 550Y", type:"48-Seater Long-haul", seats:48, layout:"2-2", arr:"13:00 (+1 day)" }
+  ],
+  "kampala>juba": [
+    { time:"05:30", bus:"Eco Voyager 05", plate:"UAF 880J", type:"48-Seater Long-haul", seats:48, layout:"2-2", arr:"19:30" }
+  ]
+};
+const PLAIN = { kampala:"Kampala", nairobi:"Nairobi", juba:"Juba" };
+const FLAGS = { kampala:"🇺🇬", nairobi:"🇰🇪", juba:"🇸🇸" };
+
+/* =================== helpers =================== */
+const $  = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const fmt = (c, a) => `${c} ${Number(a).toLocaleString("en-US")}`;
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const normMpesa = p => { let d=String(p||"").replace(/\D/g,""); if(d.length===10&&d.startsWith("0")) d="254"+d.slice(1); return d; };
+const ALPHA = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const rand6 = () => Array.from({length:6}, () => ALPHA[Math.floor(Math.random()*ALPHA.length)]).join("");
+function niceDate(d){ try{ return new Date(d+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric"}); }catch(e){ return d; } }
+function hashStr(s){ let h=1779033703^s.length; for(let i=0;i<s.length;i++){ h=Math.imul(h^s.charCodeAt(i),3432918353); h=h<<13|h>>>19; } return h>>>0; }
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+const KEY="ecobus_bookings"; let MEM=[];
+function loadAll(){ try{ const raw=localStorage.getItem(KEY); return raw?JSON.parse(raw):MEM; }catch(e){ return MEM; } }
+function saveAll(list){ MEM=list; try{ localStorage.setItem(KEY, JSON.stringify(list)); }catch(e){} }
+function persist(b){ const list=loadAll(); list.unshift(b); saveAll(list.slice(0,60)); }
+
+let toastTimer;
+function toast(msg){ let t=$("#toast"); if(!t){ t=document.createElement("div"); t.id="toast"; t.style.cssText="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0b2b20;color:#fff;padding:13px 20px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:400;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 16px 40px -14px rgba(0,0,0,.5)"; document.body.appendChild(t); } t.textContent=msg; t.style.opacity="1"; t.style.transform="translateX(-50%)"; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{ t.style.opacity="0"; },3000); }
+
+/* =================== fare widget =================== */
+const fromSel=$("#from"), toSel=$("#to"), classSel=$("#class"), paxSel=$("#pax"), dateInp=$("#date"),
+      quotePrice=$("#quotePrice"), quoteMeta=$("#quoteMeta"), quoteNote=$("#quoteNote"), waBtn=$("#waBtn");
+dateInp.min = new Date().toISOString().split("T")[0];
+
+function tripsFor(key, cls){
+  const all = SCHEDULE[key] || [];
+  const hasBiz = all.some(t => t.biz);
+  if(!hasBiz) return all;
+  return all.filter(t => cls==="business" ? t.biz : !t.biz);
+}
+function clsUsedFor(key, cls){
+  const r = FARES[key];
+  if(!r) return "Standard";
+  if(r.amount) return "Standard";
+  return cls==="business" ? "Business" : "Economy";
+}
+function fareFor(key, cls){
+  const r = FARES[key];
+  if(!r) return null;
+  if(r.amount) return { amount:r.amount, currency:r.currency };
+  const tier = cls==="business" ? r.business : r.economy;
+  return { amount:tier.amount, currency:tier.currency };
+}
+function quote(){
+  const f=fromSel.value, t=toSel.value, cls=classSel.value, pax=+paxSel.value;
+  const key=`${f}>${t}`;
+  waBtn.removeAttribute("aria-disabled");
+  if(f===t){
+    quotePrice.textContent="—"; quoteMeta.textContent="select two different cities";
+    quoteNote.textContent="Pick an origin and a destination to see your fare.";
+    waBtn.setAttribute("aria-disabled","true"); waBtn.href="#book"; return;
+  }
+  const fare=fareFor(key, cls);
+  if(!fare){
+    quotePrice.textContent="Soon"; quoteMeta.textContent=`${PLAIN[f]} → ${PLAIN[t]} · not yet open`;
+    quoteNote.textContent="This route is coming soon — meanwhile try Nairobi → Juba or Kampala → Juba.";
+    waBtn.setAttribute("aria-disabled","true"); waBtn.href="#book"; return;
+  }
+  const total=fare.amount*pax;
+  quotePrice.textContent=fmt(fare.currency, total);
+  quoteMeta.textContent=`${pax} ${pax>1?"seats":"seat"} × ${fare.currency} ${fare.amount.toLocaleString("en-US")} · ${clsUsedFor(key, cls)}`;
+  const trips=tripsFor(key, cls);
+  quoteNote.textContent=DUR[key]+(trips.length?` · next departure ${trips[0].time} · ${trips[0].bus}`:"");
+  const msg=`Hello Eco Bus! I'd like to book ${pax} seat(s) on ${PLAIN[f]} → ${PLAIN[t]}${dateInp.value?` on ${dateInp.value}`:""} (${clsUsedFor(key, cls)}). Quoted total: ${fmt(fare.currency,total)}.`;
+  waBtn.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+[fromSel,toSel,classSel,paxSel,dateInp].forEach(el=>el.addEventListener("change", quote));
+ $("#swapBtn").addEventListener("click", ()=>{ [fromSel.value,toSel.value]=[toSel.value,fromSel.value]; quote(); });
+$$(".book-btn").forEach(b=>b.addEventListener("click", ()=>{
+  fromSel.value=b.dataset.from; toSel.value=b.dataset.to;
+  classSel.value=b.dataset.class||"standard";
+  quote(); openBooking();
+}));
+quote();
+
+/* =================== booking flow =================== */
+const bookModal=$("#bookModal"), lookupModal=$("#lookupModal");
+const state={ from:"kampala", to:"nairobi", date:"", cls:"standard", pax:1, time:null, bus:null, seats:[], method:"M-Pesa" };
+let occupied=new Set(), currentTicket=null;
+
+function showModal(m){ m.classList.add("show"); m.setAttribute("aria-hidden","false"); document.body.classList.add("no-scroll"); }
+function hideModal(m){ m.classList.remove("show"); m.setAttribute("aria-hidden","true"); document.body.classList.remove("no-scroll"); if(m===bookModal) stopMpesa(); }
+$$(".modal-x").forEach(x=>x.addEventListener("click",()=>hideModal($("#"+x.dataset.close))));
+$$(".modal-backdrop").forEach(bd=>bd.addEventListener("click",e=>{ if(e.target===bd) hideModal(bd); }));
+addEventListener("keydown",e=>{ if(e.key==="Escape") $$(".modal-backdrop.show").forEach(hideModal); });
+
+function gotoStep(n){
+  $$("#stepsBar .sdot").forEach((d,i)=>{ d.classList.toggle("on", i===n-1); d.classList.toggle("done", i<n-1); });
+  $$(".bstep").forEach(s=>s.classList.toggle("on", +s.dataset.bstep===n));
+  const mb=$("#bookModal .modal-body"); if(mb) mb.scrollTop=0;
+}
+
+function openBooking(){
+  const key=`${fromSel.value}>${toSel.value}`;
+  if(!FARES[key]){ toast("That route is coming soon — pick a supported route."); return; }
+  state.from=fromSel.value; state.to=toSel.value; state.cls=classSel.value; state.pax=+paxSel.value;
+  state.date=dateInp.value||new Date().toISOString().split("T")[0];
+  state.seats=[]; state.method="M-Pesa";
+  $("#bDate").min=dateInp.min; $("#bDate").value=state.date;
+  $("#bPax").value=String(state.pax); $("#bClass").value=state.cls;
+  $("#bName").value=""; $("#bPhone").value=""; $("#bMpesaPhone").value="";
+  $$("#payGrid .paycard").forEach(c=>c.classList.toggle("on", c.dataset.method==="M-Pesa"));
+  $("#mpesaPhoneWrap").style.display="none"; $("#mpesaStatus").style.display="none";
+  stopMpesa(); renderTrip(); gotoStep(1); showModal(bookModal);
+}
+ $("#openBook").addEventListener("click", openBooking);
+ $("#navLookup").addEventListener("click", e=>{ e.preventDefault(); openLookup(); });
+
+function renderTrip(){
+  const key=`${state.from}>${state.to}`;
+  $("#tripSum").innerHTML=`${FLAGS[state.from]} ${PLAIN[state.from]} &nbsp;→&nbsp; ${FLAGS[state.to]} ${PLAIN[state.to]}`;
+  $("#bClassWrap").style.display = key==="juba>kampala" ? "" : "none";
+  const trips=tripsFor(key, state.cls);
+  state.time=trips[0]?.time||null; state.bus=trips[0]||null; state.seats=[];
+  const box=$("#timeChips"); box.innerHTML="";
+  trips.forEach((t,i)=>{
+    const b=document.createElement("button"); b.type="button";
+    b.className="tchip"+(i===0?" on":"");
+    b.innerHTML=`<b>${t.time}</b><span>${t.bus} · ${t.plate} · ${t.type}</span>`;
+    b.addEventListener("click",()=>{
+      state.time=t.time; state.bus=t; state.seats=[];
+      $$("#timeChips .tchip").forEach(c=>c.classList.remove("on"));
+      b.classList.add("on");
+    });
+    box.appendChild(b);
+  });
+}
+ $("#bDate").addEventListener("change",e=>{ state.date=e.target.value; state.seats=[]; });
+ $("#bPax").addEventListener("change",e=>{ state.pax=+e.target.value; state.seats=[]; updateSelNote(); });
+ $("#bClass").addEventListener("change",e=>{ state.cls=e.target.value; renderTrip(); });
+
+ $("#toSeats").addEventListener("click",()=>{ renderSeats(); gotoStep(2); });
+ $("#back1").addEventListener("click",()=>gotoStep(1));
+ $("#back2").addEventListener("click",()=>gotoStep(2));
+ $("#toDetails").addEventListener("click",()=>{
+  if(state.seats.length!==state.pax){ toast(`Select ${state.pax} seat(s) to continue.`); return; }
+  renderDetails(); gotoStep(3);
+});
+
+/* seat map */
+function genOccupied(route,time,date,total){
+  const rnd=mulberry32(hashStr(route+"|"+time+"|"+date));
+  const count=Math.floor(total*(0.15+rnd()*0.45));
+  const s=new Set(); let guard=0;
+  while(s.size<count && guard++<total*10){ s.add(1+Math.floor(rnd()*total)); }
+  loadAll().forEach(b=>{ if(b.key===route&&b.time===time&&b.date===date) b.seats.forEach(x=>s.add(x)); });
+  return s;
+}
+function renderSeats(){
+  const t=state.bus, key=`${state.from}>${state.to}`;
+  occupied=genOccupied(key, t.time, state.date, t.seats);
+  const free=t.seats-occupied.size;
+  $("#busInfo").innerHTML=
+    `<div><b>${t.bus}</b> · ${t.plate}<br><span>${t.type} · ${t.layout==="2-1"?"2 + 1 business layout":"2 + 2 layout"}</span></div>
+     <div style="text-align:right"><b>${Math.max(free,0)}</b> seats free<br><span>departs ${t.time}</span></div>`;
+  const rows=$("#seatRows"); rows.innerHTML="";
+  const per=t.layout==="2-1"?3:4;
+  for(let n=1;n<=t.seats;n+=per){
+    const row=document.createElement("div"); row.className="srow";
+    for(let i=0;i<per&&n+i<=t.seats;i++){
+      if(i===2){ const a=document.createElement("span"); a.className="aisle"; row.appendChild(a); }
+      const num=n+i, s=document.createElement("button"); s.type="button";
+      s.className="seat"+(occupied.has(num)?" taken":""); s.textContent=num;
+      if(!occupied.has(num)) s.addEventListener("click",()=>toggleSeat(num,s));
+      row.appendChild(s);
+    }
+    rows.appendChild(row);
+  }
+  updateSelNote();
+}
+function toggleSeat(n, el){
+  const i=state.seats.indexOf(n);
+  if(i>-1){ state.seats.splice(i,1); el.classList.remove("sel"); }
+  else if(state.seats.length<state.pax){ state.seats.push(n); el.classList.add("sel"); }
+  else toast(`You're booking ${state.pax} seat(s) — unselect one first.`);
+  state.seats.sort((a,b)=>a-b); updateSelNote();
+}
+function updateSelNote(){
+  $("#selNote").textContent = state.seats.length
+    ? `Selected seat(s): ${state.seats.join(", ")}  ·  ${state.seats.length} of ${state.pax}`
+    : `Select ${state.pax} seat${state.pax>1?"s":""} to continue`;
+}
+
+/* details + payment */
+function renderDetails(){
+  const key=`${state.from}>${state.to}`, fare=fareFor(key, state.cls), t=state.bus;
+  const cls=clsUsedFor(key, state.cls);
+  $("#sumBox").innerHTML=`
+    <div class="sum-row"><span>Route</span><b>${FLAGS[state.from]} ${PLAIN[state.from]} → ${FLAGS[state.to]} ${PLAIN[state.to]}</b></div>
+    <div class="sum-row"><span>Travel date</span><b>${niceDate(state.date)}</b></div>
+    <div class="sum-row"><span>Departure</span><b>${state.time} · arr. ${t.arr}</b></div>
+    <div class="sum-row"><span>Bus</span><b>${t.bus} (${t.plate})</b></div>
+    <div class="sum-row"><span>Seat(s)</span><b>${state.seats.join(", ")}</b></div>
+    <div class="sum-row"><span>Class</span><b>${cls}</b></div>
+    <div class="sum-row"><span>Fare</span><b>${state.pax} × ${fmt(fare.currency, fare.amount)}</b></div>
+    <div class="sum-row total"><span>Total — ${state.method==="Pay at office"?"due at office":"to pay now"}</span><b>${fmt(fare.currency, fare.amount*state.pax)}</b></div>`;
+  $("#payBtn").textContent = state.method==="Pay at office" ? "Reserve my seats" : "Pay & get e-ticket";
+}
+$$("#payGrid .paycard").forEach(c=>c.addEventListener("click",()=>{
+  state.method=c.dataset.method;
+  $$("#payGrid .paycard").forEach(x=>x.classList.remove("on"));
+  c.classList.add("on");
+  const wrap=$("#mpesaPhoneWrap");
+  if(c.dataset.method==="M-Pesa"){
+    wrap.style.display="";
+    if(!$("#bMpesaPhone").value) $("#bMpesaPhone").value=$("#bPhone").value.trim();
+  } else { wrap.style.display="none"; $("#mpesaStatus").style.display="none"; }
+  renderDetails();
+}));
+
+/* -------- PAY: live M-Pesa STK Push, or simulated fallback -------- */
+ $("#payBtn").addEventListener("click", async ()=>{
+  const name=$("#bName").value.trim(), phone=$("#bPhone").value.trim();
+  if(name.length<2){ toast("Please enter the passenger's full name."); return; }
+  if(phone.replace(/\D/g,"").length<9){ toast("Please enter a valid phone number."); return; }
+
+  if(state.method==="M-Pesa"){
+    if(MPESA_ENDPOINT){ await startMpesaPush(name, phone); }
+    else{ openMpesaPrompt({ name, phone, demo:true }); } /* demo STK prompt page */
+    return;
+  }
+
+  /* SIMULATED PAYMENT — used for MoMo / Airtel. Integrate their APIs the same way as M-Pesa. */
+  const btn=$("#payBtn"); btn.classList.add("loading"); btn.textContent="Processing…";
+  setTimeout(()=>{ btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket"; createBooking(name, phone); }, 1600);
+});
+
+/* -------- M-Pesa checkout prompt page (step 4) -------- */
+const MPESA_TTL_DEMO=60, MPESA_TTL_LIVE=120;
+const mp={ timer:null, poll:null, left:60, ttl:60, pin:"", mode:"pin", demo:true,
+           name:"", phone:"", msisdn:"", currency:"KSh", amount:0, receipt:null, err:"" };
+
+function prettyMsisdn(d){ return d.length===12 ? `+${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)} ${d.slice(9)}` : d; }
+function mpesaReceipt(){ return "Q"+rand6()+rand6().slice(0,3); }
+function setMpesaMode(mode){ mp.mode=mode; renderMpesaBody(); }
+function stopMpesa(){ clearInterval(mp.timer); clearInterval(mp.poll); }
+
+function openMpesaPrompt(opts){
+  mp.name=opts.name; mp.phone=opts.phone; mp.pin=""; mp.receipt=null; mp.err="";
+  mp.demo=!!opts.demo; mp.ttl=mp.demo?MPESA_TTL_DEMO:MPESA_TTL_LIVE; mp.left=mp.ttl;
+  mp.msisdn=normMpesa(($("#bMpesaPhone").value||"").trim()||mp.phone);
+  const key=`${state.from}>${state.to}`, fare=fareFor(key, state.cls);
+  mp.currency=fare.currency; mp.amount=fare.amount*state.pax;
+  $("#mpesaCaption").textContent = mp.demo
+    ? "Demo mode — this simulated prompt stands in for the Safaricom STK push until MPESA_ENDPOINT is configured. Enter any 4-digit PIN."
+    : "Real STK push sent — approve it on your phone to complete the payment.";
+  stopMpesa(); gotoStep(4);
+  setMpesaMode(mp.demo ? "pin" : "waiting");
+  startMpesaCountdown();
+}
+
+function startMpesaCountdown(){
+  clearInterval(mp.timer);
+  paintMpesaClock();
+  mp.timer=setInterval(()=>{
+    mp.left--; paintMpesaClock();
+    if(mp.left<=0){ stopMpesa(); if(mp.mode==="pin"||mp.mode==="waiting") setMpesaMode("expired"); }
+  },1000);
+}
+function paintMpesaClock(){
+  $("#mpesaClock").textContent=`${Math.floor(mp.left/60)}:${String(mp.left%60).padStart(2,"0")}`;
+  $("#mpesaTimerBar").style.width=Math.max(mp.left/mp.ttl*100,0)+"%";
+}
+
+function renderMpesaBody(){
+  const body=$("#mpesaBody"), route=`${PLAIN[state.from]} → ${PLAIN[state.to]}`;
+  if(mp.mode==="pin"){
+    body.innerHTML=`
+      <div class="mpesa-req"><div class="mp">🌿 ECOBUS</div>
+        Enter your M-Pesa PIN to pay <b>${fmt(mp.currency,mp.amount)}</b> for <b>${route}</b> · ${state.pax} seat(s) · departs ${state.time}.</div>
+      <div class="mpesa-msisdn">📱 ${esc(prettyMsisdn(mp.msisdn))}</div>
+      <div class="mpesa-pinrow" id="mpesaPinRow"><i></i><i></i><i></i><i></i></div>
+      <div class="mpesa-key" id="mpesaKey"></div>
+      <div class="mpesa-actions">
+        <button type="button" class="mpesa-btn" id="mpesaCancelBtn">CANCEL</button>
+        <button type="button" class="mpesa-btn solid" id="mpesaOkBtn" disabled>OK</button>
+      </div>`;
+    const kw=$("#mpesaKey");
+    ["1","2","3","4","5","6","7","8","9",null,"0","del"].forEach(k=>{
+      const b=document.createElement("button"); b.type="button";
+      if(k===null){ b.disabled=true; b.style.visibility="hidden"; }
+      else if(k==="del"){ b.setAttribute("aria-label","Delete last digit"); b.textContent="⌫";
+        b.addEventListener("click",()=>{ mp.pin=mp.pin.slice(0,-1); paintMpesaPin(); }); }
+      else{ b.textContent=k; b.setAttribute("aria-label","Digit "+k);
+        b.addEventListener("click",()=>{ if(mp.pin.length<4){ mp.pin+=k; paintMpesaPin(); } }); }
+      kw.appendChild(b);
+    });
+    paintMpesaPin();
+    $("#mpesaOkBtn").addEventListener("click", verifyMpesaPin);
+    $("#mpesaCancelBtn").addEventListener("click", cancelMpesa);
+  } else if(mp.mode==="verifying"){
+    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-spin"></div><b>Verifying your payment…</b><span style="font-size:.8rem;color:var(--muted)">Don't close this window.</span></div>`;
+  } else if(mp.mode==="waiting"){
+    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">📩</div><b>Check your phone</b>
+      <span>We sent an M-Pesa prompt to <b>${esc(prettyMsisdn(mp.msisdn))}</b>.<br>Enter your PIN there to pay <b>${fmt(mp.currency,mp.amount)}</b> — this page confirms automatically.</span></div>`;
+  } else if(mp.mode==="success"){
+    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">✅</div><b>Payment received</b><span>M-Pesa receipt <b>${esc(mp.receipt)}</b> — issuing your e-ticket…</span></div>`;
+  } else if(mp.mode==="expired"||mp.mode==="failed"){
+    const exp=mp.mode==="expired";
+    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">${exp?"⏰":"⚠️"}</div><b>${exp?"Request expired":"Payment not completed"}</b>
+      <span>${exp?`For security this request timed out after ${mp.ttl} seconds.`:esc(mp.err||"The M-Pesa request was cancelled or failed.")}</span>
+      <button type="button" class="mpesa-btn solid" id="mpesaAgainBtn" style="min-width:190px">↻ Send again</button></div>`;
+    $("#mpesaAgainBtn").addEventListener("click", retryMpesa);
+  }
+}
+
+function paintMpesaPin(){
+  const boxes=$$("#mpesaPinRow i"); if(!boxes.length) return;
+  boxes.forEach((b,i)=>{ b.classList.toggle("f", i<mp.pin.length); b.textContent=i<mp.pin.length?"•":""; });
+  const ok=$("#mpesaOkBtn"); if(ok) ok.disabled=mp.pin.length!==4;
+}
+
+function verifyMpesaPin(){
+  if(mp.pin.length!==4) return;
+  setMpesaMode("verifying");
+  setTimeout(()=>{
+    mp.receipt=mpesaReceipt(); stopMpesa(); setMpesaMode("success");
+    setTimeout(()=>createBooking(mp.name, mp.phone, { paid:true, payRef:mp.receipt }), 900);
+  }, 1800);
+}
+
+function retryMpesa(){
+  if(mp.demo){ openMpesaPrompt({ name:mp.name, phone:mp.phone, demo:true }); }
+  else{ startMpesaPush(mp.name, mp.phone); }
+}
+
+function cancelMpesa(){ stopMpesa(); gotoStep(3); toast("M-Pesa payment cancelled."); }
+
+ $("#mpesaBackBtn").addEventListener("click", cancelMpesa);
+
+async function startMpesaPush(name, phone){
+  const btn=$("#payBtn");
+  const msisdn=normMpesa($("#bMpesaPhone").value||phone);
+  if(!/^254(7|1)\d{8}$/.test(msisdn)){ toast("Enter a valid Safaricom number for M-Pesa, e.g. 07XX XXX XXX."); return; }
+  btn.classList.add("loading"); btn.textContent="Sending prompt…";
+  try{
+    const r=await fetch(MPESA_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ phone:msisdn, route:`${state.from}>${state.to}`, cls:state.cls, pax:state.pax, date:state.date })});
+    const d=await r.json();
+    if(!d.ok) throw new Error(d.error||"Could not send the M-Pesa prompt.");
+    btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket";
+    openMpesaPrompt({ name, phone, demo:false });
+    mp.poll=setInterval(async()=>{
+      try{
+        const s=await fetch(MPESA_STATUS+"?checkoutRequestID="+encodeURIComponent(d.checkoutRequestID)).then(x=>x.json());
+        if(s.status==="paid"){
+          stopMpesa(); mp.receipt=s.receipt||mpesaReceipt(); setMpesaMode("success");
+          setTimeout(()=>createBooking(name, phone, { paid:true, payRef:mp.receipt }), 900);
+          return;
+        }
+        if(s.status==="failed"||s.status==="cancelled"){
+          stopMpesa(); mp.err=s.desc||"M-Pesa payment not completed."; setMpesaMode("failed"); return;
+        }
+      }catch(e){}
+    },3000);
+  }catch(err){
+    btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket";
+    toast(err.message||"Network error — please try again.");
+  }
+}
+
+
+function createBooking(name, phone, extra={}){
+  const key=`${state.from}>${state.to}`, fare=fareFor(key, state.cls), t=state.bus;
+  const paid = extra.paid !== undefined ? !!extra.paid : (state.method!=="Pay at office");
+  const b={
+    ref:"ECO-"+rand6(), receiptNo:"R-"+rand6(),
+    key, from:state.from, to:state.to,
+    date:state.date, time:t.time, arr:t.arr,
+    cls:clsUsedFor(key, state.cls), pax:state.pax, seats:[...state.seats],
+    name, phone, method:state.method,
+    currency:fare.currency, perSeat:fare.amount, total:fare.amount*state.pax,
+    payRef: extra.payRef||null,
+    status: paid ? "PAID" : "RESERVED",
+    bus:{ name:t.bus, plate:t.plate, type:t.type },
+    createdAt:new Date().toISOString()
+  };
+  persist(b); currentTicket=b;
+  $("#t4Title").textContent = paid ? "Payment successful — you're booked! 🎉" : "Seats reserved — pay at the office 🎉";
+  $("#ticketView").innerHTML = renderTicketHTML(b);
+  gotoStep(5);
+  toast(paid ? "Payment received ✅ e-ticket ready!" : "Seats reserved ✅");
+}
+
+/* =================== e-ticket rendering =================== */
+function renderTicketHTML(b){
+  const paid=b.status==="PAID";
+  const payLine=`${b.method}${b.payRef ? " · M-Pesa receipt "+b.payRef : ""}`;
+  return `
+  <div class="ticket-view">
+    <div class="tv-top">
+      <div class="tv-brand">🌿 ECO BUS<small>Cross-border coach travel</small></div>
+      <div class="tv-ref">${b.ref}<small>Booking reference</small></div>
+      <span class="tv-status ${paid?"":"res"}">${paid?"✓ PAID":"● RESERVED"}</span>
+    </div>
+    <div class="tv-body">
+      <div class="tv-route">${FLAGS[b.from]} ${PLAIN[b.from]} <span style="color:var(--emerald)">→</span> ${FLAGS[b.to]} ${PLAIN[b.to]}</div>
+      <div class="tv-grid">
+        <div class="tv-cell"><small>Passenger</small><b>${esc(b.name)}</b></div>
+        <div class="tv-cell"><small>Phone</small><b>${esc(b.phone)}</b></div>
+        <div class="tv-cell"><small>Travel date</small><b>${niceDate(b.date)}</b></div>
+        <div class="tv-cell"><small>Departure → arrival</small><b>${b.time} → ${b.arr}</b></div>
+        <div class="tv-cell"><small>Bus</small><b>${b.bus.name} (${b.bus.plate})</b></div>
+        <div class="tv-cell"><small>Seat(s)</small><b>${b.seats.join(", ")}</b></div>
+        <div class="tv-cell"><small>Class</small><b>${b.cls}</b></div>
+        <div class="tv-cell"><small>Total ${paid?"paid":"due"}</small><b>${fmt(b.currency,b.total)}</b></div>
+        <div class="tv-cell"><small>Receipt no.</small><b>${b.receiptNo}</b></div>
+      </div>
+      <div class="tv-line tv-note">Board at ${TERMINALS[b.from]} · arrive 45 min early · carry the ID matching this name · payment: ${payLine}.</div>
+      <div class="tv-bar" aria-hidden="true"></div>
+      <div class="tv-note" style="text-align:center">${b.ref} · ${b.receiptNo} · Eco Bus e-ticket</div>
+    </div>
+  </div>`;
+}
+
+/* =================== PDF downloads (jsPDF) =================== */
+function pdfHeader(doc, W, title, subtitle){
+  doc.setFillColor(6,35,26); doc.rect(0,0,W,110,"F");
+  doc.setFillColor(201,242,111); doc.circle(W-58,55,20,"F");
+  doc.setTextColor(201,242,111); doc.setFont("helvetica","bold"); doc.setFontSize(28); doc.text("ECO BUS",48,52);
+  doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor(214,235,224);
+  doc.text("Kampala  -  Nairobi  -  Juba    |    Cross-border coach travel",48,74);
+  doc.setTextColor(150,190,168); doc.setFontSize(9.5); doc.text(subtitle,48,92);
+  doc.setTextColor(11,43,32); doc.setFont("helvetica","bold"); doc.setFontSize(20); doc.text(title,48,142);
+}
+function barcode(doc, x, y, seed){
+  let cx=x; const H=48;
+  for(let i=0;i<seed.length*6;i++){
+    const c=seed.charCodeAt(i%seed.length);
+    const w=((c*(i+3))%3)+1.2, h=H-((c*(i+1))%12);
+    doc.setFillColor(11,43,32); doc.rect(cx,y,w,h,"F");
+    cx+=w+2.2;
+    if(cx>doc.internal.pageSize.getWidth()-60) break;
+  }
+  doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.setTextColor(60,80,72);
+  doc.text(seed,(x+cx)/2,y+H+16,{align:"center"});
+}
+function fallbackPrint(){ toast("PDF engine unavailable offline — use the print dialog and 'Save as PDF'."); setTimeout(()=>window.print(),350); }
+
+function downloadTicket(b){
+  if(!window.jspdf){ fallbackPrint(); return; }
+  try{
+    const {jsPDF}=window.jspdf, doc=new jsPDF({unit:"pt",format:"a4"});
+    const W=doc.internal.pageSize.getWidth();
+    pdfHeader(doc,W,"E-TICKET","Booking "+b.ref+"  ·  issued "+new Date(b.createdAt).toLocaleString("en-GB"));
+    let y=182;
+    const row=(l,v)=>{ doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(120,140,130); doc.text(l,48,y);
+      doc.setFont("helvetica","bold"); doc.setFontSize(12); doc.setTextColor(11,43,32); doc.text(String(v),225,y); y+=25; };
+    row("Passenger",b.name); row("Phone",b.phone);
+    row("Trip",PLAIN[b.from]+"  ->  "+PLAIN[b.to]);
+    row("Travel date",niceDate(b.date));
+    row("Departure",b.time+"   (arrival "+b.arr+")");
+    row("Boarding at",TERMINALS[b.from]);
+    row("Bus",b.bus.name+"  ·  "+b.bus.type);
+    row("Plate no.",b.bus.plate);
+    row("Seat(s)",b.seats.join(", "));
+    row("Class",b.cls);
+    y+=6; doc.setDrawColor(180,195,188); doc.setLineWidth(1); doc.line(48,y,W-48,y); y+=24;
+    row("Fare ("+b.pax+" x "+fmt(b.currency,b.perSeat)+")",fmt(b.currency,b.total));
+    row("Payment method",b.method+(b.payRef?"  (rcpt "+b.payRef+")":""));
+    row("Status",b.status==="PAID"?"PAID - CONFIRMED":"RESERVED - pay at office");
+    row("Receipt no.",b.receiptNo);
+    y+=14; barcode(doc,48,y,b.ref); y+=96;
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(120,140,130);
+    doc.text("Present this reference at boarding. Carry the ID matching the passenger name.",48,y); y+=14;
+    doc.text("Changes free up to 12 h before departure. Travel green with Eco Bus.",48,y);
+    doc.save(`EcoBus-Ticket-${b.ref}.pdf`);
+  }catch(e){ fallbackPrint(); }
+}
+function downloadReceipt(b){
+  if(!window.jspdf){ fallbackPrint(); return; }
+  try{
+    const {jsPDF}=window.jspdf, doc=new jsPDF({unit:"pt",format:"a4"});
+    const W=doc.internal.pageSize.getWidth();
+    pdfHeader(doc,W,"RECEIPT","Receipt "+b.receiptNo+"  ·  "+new Date(b.createdAt).toLocaleString("en-GB"));
+    let y=186;
+    const row=(l,v)=>{ doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(120,140,130); doc.text(l,48,y);
+      doc.setFont("helvetica","bold"); doc.setFontSize(12); doc.setTextColor(11,43,32); doc.text(String(v),225,y); y+=25; };
+    row("Billed to",b.name); row("Phone",b.phone); row("Booking ref",b.ref);
+    row("Trip",PLAIN[b.from]+"  ->  "+PLAIN[b.to]+"  ("+b.cls+")");
+    row("Travel",niceDate(b.date)+"  ·  departs "+b.time);
+    row("Bus / seats",b.bus.name+" ("+b.bus.plate+")  ·  seats "+b.seats.join(", "));
+    y+=8;
+    doc.setFillColor(246,244,238); doc.roundedRect(48,y,W-96,86,10,10,"F");
+    doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(90,110,100);
+    doc.text(`Eco Bus ${b.cls} e-ticket x ${b.pax}`,68,y+28);
+    doc.setFont("helvetica","bold"); doc.setFontSize(17); doc.setTextColor(11,43,32);
+    doc.text(fmt(b.currency,b.total),W-68,y+52,{align:"right"});
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(120,140,130);
+    doc.text((b.status==="PAID"?"PAID via "+b.method:"RESERVED - amount due at office")+(b.payRef?" (rcpt "+b.payRef+")":""),68,y+62);
+    y+=112;
+    const paid=b.status==="PAID";
+    doc.setFillColor(paid?201:255,paid?242:207,paid?111:125);
+    doc.roundedRect(48,y,170,30,15,15,"F");
+    doc.setFont("helvetica","bold"); doc.setFontSize(11);
+    doc.setTextColor(paid?6:74,paid?35:44,paid?26:0);
+    doc.text(paid?"PAID & CONFIRMED":"RESERVED",66,y+20);
+    y+=58; barcode(doc,48,y,b.receiptNo); y+=96;
+    doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(120,140,130);
+    doc.text("This receipt is proof of "+(paid?"payment":"reservation")+" for the Eco Bus booking above.",48,y); y+=14;
+    doc.text("Thank you for travelling green.",48,y);
+    doc.save(`EcoBus-Receipt-${b.receiptNo}.pdf`);
+  }catch(e){ fallbackPrint(); }
+}
+ $("#dlTicket").addEventListener("click",()=>currentTicket&&downloadTicket(currentTicket));
+ $("#dlReceipt").addEventListener("click",()=>currentTicket&&downloadReceipt(currentTicket));
+ $("#waShare").addEventListener("click",()=>{
+  if(!currentTicket)return;
+  const b=currentTicket;
+  const msg=`Eco Bus booking ${b.ref} ${b.status}%0ARoute: ${PLAIN[b.from]} -> ${PLAIN[b.to]}%0ADate: ${niceDate(b.date)} · departs ${b.time}%0ABus: ${b.bus.name} (${b.bus.plate})%0ASeats: ${b.seats.join(", ")}%0ATotal: ${fmt(b.currency,b.total)} (${b.method})`.replace(/ /g,"%20");
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,"_blank");
+});
+ $("#newBook").addEventListener("click",()=>{ hideModal(bookModal); openBooking(); });
+
+/* =================== my-booking lookup =================== */
+function openLookup(){ showModal(lookupModal); setTimeout(()=>$("#refInput").focus(),120); }
+ $("#refBtn").addEventListener("click",()=>{
+  const code=$("#refInput").value.trim().toUpperCase();
+  const res=$("#lookupResult"), act=$("#lookupActions");
+  if(!code){ toast("Enter your booking reference first."); return; }
+  const b=loadAll().find(x=>x.ref===code);
+  if(!b){ res.innerHTML=`<p class="m-sub" style="margin-top:1rem">No booking found for <b>${esc(code)}</b>. Check the code on your e-ticket.</p>`; act.innerHTML=""; return; }
+  res.innerHTML=renderTicketHTML(b);
+  act.innerHTML="";
+  const mk=(label,cls,fn)=>{ const x=document.createElement("button"); x.className=cls; x.textContent=label; x.addEventListener("click",fn); act.appendChild(x); };
+  mk("⬇ Ticket PDF","btn btn-primary",()=>downloadTicket(b));
+  mk("⬇ Receipt PDF","btn btn-dark",()=>downloadReceipt(b));
+  mk("Book another","btn btn-dark",()=>{ hideModal(lookupModal); openBooking(); });
+});
+ $("#refInput").addEventListener("keydown",e=>{ if(e.key==="Enter") $("#refBtn").click(); });
+
+/* =================== page features =================== */
+const nav=$("#nav"), burger=$("#burger"), menu=$("#menu"), prog=$("#progress");
+addEventListener("scroll",()=>{
+  nav.classList.toggle("scrolled",scrollY>10);
+  const h=document.documentElement;
+  prog.style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+"%";
+},{passive:true});
+burger.addEventListener("click",()=>{
+  const open=menu.classList.toggle("open");
+  burger.classList.toggle("active",open);
+  burger.setAttribute("aria-expanded",open);
+});
+$$(".menu a").forEach(a=>a.addEventListener("click",()=>{
+  menu.classList.remove("open"); burger.classList.remove("active"); burger.setAttribute("aria-expanded","false");
+}));
+
+const revIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); revIO.unobserve(e.target); }
+}),{threshold:.12});
+$$(".reveal").forEach(el=>revIO.observe(el));
+
+function animateCount(el){
+  const target=+el.dataset.count, dur=1500, t0=performance.now();
+  (function tick(t){
+    const p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e).toLocaleString("en-US");
+    if(p<1)requestAnimationFrame(tick);
+  })(t0);
+}
+const cntIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ animateCount(e.target); cntIO.unobserve(e.target); }
+}),{threshold:.6});
+$$("[data-count]").forEach(el=>cntIO.observe(el));
+
+const slides=$$(".t-slide"), dots=$$(".t-dot"); let ti=0, timer;
+function showT(i){ ti=i; slides.forEach((s,n)=>s.classList.toggle("active",n===i)); dots.forEach((d,n)=>d.classList.toggle("active",n===i)); }
+function restartT(){ clearInterval(timer); timer=setInterval(()=>showT((ti+1)%slides.length),6500); }
+dots.forEach((d,n)=>d.addEventListener("click",()=>{ showT(n); restartT(); }));
+restartT();
+
+$$(".faq-q").forEach(btn=>btn.addEventListener("click",()=>{
+  const item=btn.parentElement, wasOpen=item.classList.contains("open");
+  $$(".faq-item.open").forEach(o=>{ o.classList.remove("open"); o.querySelector(".faq-q").setAttribute("aria-expanded","false"); });
+  if(!wasOpen){ item.classList.add("open"); btn.setAttribute("aria-expanded","true"); }
+}));
+
+ $("#year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
