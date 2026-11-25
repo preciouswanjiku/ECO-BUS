@@ -1,7 +1,0 @@
-{
-  "name": "ecobus-mpesa-api",
-  "version": "1.0.0",
-  "private": true,
-  "description": "M-Pesa Daraja STK Push API for the Eco Bus booking page (Vercel serverless functions, no dependencies)",
-  "engines": { "node": ">=18" }
-}
