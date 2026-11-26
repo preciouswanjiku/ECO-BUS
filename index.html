@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eco Bus — Kampala · Nairobi · Juba</title>
-<meta name="description" content="Eco Bus links East Africa's capitals with modern, low-emission coaches. Book seats, pay by M-Pesa prompt, and get your e-ticket instantly.">
+<meta name="description" content="Eco Bus links East Africa's capitals with modern, low-emission coaches. Book seats, pay via M-Pesa Pochi la Biashara, and get your e-ticket once payment is confirmed.">
 <meta name="theme-color" content="#06231a">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -279,40 +279,24 @@ footer a:hover{color:var(--lime)}
 .sum-row span{color:var(--muted)}
 .sum-row b{font-family:'Sora';text-align:right}
 .sum-row.total b{color:var(--forest);font-size:1.12rem}
-#mpesaStatus p{margin-top:.3rem}
-#mpesaStatus b{font-family:'Sora'}
+#pochiErr p{margin-top:.3rem}
+#pochiErr b{font-family:'Sora'}
+#pochiErr{border-color:#e9c9a0;background:#fff7ec}
 
-/* ---- M-Pesa checkout prompt page (step 4) ---- */
-.mpesa-stage{display:flex;justify-content:center;padding:.4rem 0 .1rem}
-.mpesa-phone{width:min(340px,100%);background:#06231a;border-radius:34px;padding:10px;box-shadow:var(--shadow-lg)}
-.mpesa-screen{background:#eef2ee;border-radius:24px;overflow:hidden;min-height:440px;display:flex;flex-direction:column}
-.mpesa-head{background:linear-gradient(120deg,#0e3f2e,#12a159);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.6rem}
-.mpesa-head b{font-family:'Sora';letter-spacing:.14em;font-size:.95rem}
-.mpesa-clock{font-weight:700;font-size:.78rem;background:rgba(255,255,255,.18);padding:.2rem .6rem;border-radius:999px;white-space:nowrap}
-.mpesa-timer{height:3px;background:rgba(255,255,255,.25)}
-.mpesa-timer i{display:block;height:100%;background:var(--lime);transition:width 1s linear}
-.mpesa-body{flex:1;padding:.95rem;display:flex;flex-direction:column;gap:.65rem}
-.mpesa-req{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.85rem .95rem;font-size:.85rem;color:#2c463b;line-height:1.55}
-.mpesa-req .mp{font-family:'Sora';font-weight:800;color:var(--forest);font-size:1.02rem;margin-bottom:.2rem;letter-spacing:.02em}
-.mpesa-msisdn{font-size:.8rem;color:var(--muted);text-align:center;font-weight:600}
-.mpesa-pinrow{display:flex;gap:.55rem;justify-content:center}
-.mpesa-pinrow i{width:44px;height:46px;border-radius:12px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;font-size:1.4rem;color:var(--forest);font-weight:800;transition:.15s;font-style:normal}
-.mpesa-pinrow i.f{border-color:var(--emerald);background:var(--mint)}
-.mpesa-key{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.mpesa-key button{height:46px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:1.05rem;font-family:'Sora';color:var(--ink);transition:.12s;cursor:pointer}
-.mpesa-key button:hover{border-color:var(--emerald);background:var(--mint)}
-.mpesa-key button:active{transform:scale(.94)}
-.mpesa-actions{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.15rem}
-.mpesa-btn{padding:.72rem;border-radius:12px;font-weight:700;font-size:.85rem;letter-spacing:.05em;border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:.15s;cursor:pointer}
-.mpesa-btn:hover{border-color:var(--emerald)}
-.mpesa-btn.solid{background:var(--emerald);border-color:var(--emerald);color:#fff}
-.mpesa-btn.solid:hover{filter:brightness(1.07)}
-.mpesa-btn[disabled]{opacity:.45;pointer-events:none}
-.mpesa-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;text-align:center;font-size:.9rem;color:#2c463b;line-height:1.6}
-.mpesa-center b{font-family:'Sora';font-size:1.02rem}
-.mpesa-spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(18,161,89,.25);border-top-color:var(--emerald);animation:spin .8s linear infinite}
-.mpesa-big{font-size:2.1rem;line-height:1}
-.mpesa-caption{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.6rem}
+/* ---- Pochi la Biashara payment step (step 4) ---- */
+.pochi-box{background:#06231a;border-radius:20px;padding:1.3rem 1rem;text-align:center;display:flex;flex-direction:column;gap:.45rem;align-items:center;box-shadow:var(--shadow-lg)}
+.pochi-amount{font-family:'Sora';font-weight:800;font-size:1.6rem;color:var(--lime)}
+.pochi-num{font-family:'Sora';font-weight:800;font-size:2rem;color:#fff;letter-spacing:.08em}
+.pochi-cap{font-size:.78rem;color:#bcd8c9}
+.pochi-steps{margin:.9rem 0 0;padding-left:1.25rem;display:grid;gap:.45rem;font-size:.9rem;color:#2c463b}
+.pochi-steps li::marker{color:var(--emerald);font-weight:700}
+.release-row{display:flex;gap:.5rem;margin-top:.9rem}
+.release-row input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;padding:.75rem .9rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.office-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;border:1px solid var(--line);border-radius:14px;padding:.8rem .9rem;margin-bottom:.6rem;font-size:.85rem}
+.office-row .btn{white-space:nowrap;flex-shrink:0}
+.paycard[disabled]{opacity:.55;cursor:not-allowed}
+.paycard[disabled] span{color:#a05a2c}
+
 
 .ticket-view{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-lg)}
 .tv-top{background:linear-gradient(135deg,var(--forest),#0a4a32);color:#fff;padding:1.15rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
@@ -416,7 +400,7 @@ footer a:hover{color:var(--lime)}
     <div class="hero-copy">
       <span class="pill">🚌 Now linking Kampala · Nairobi · Juba</span>
       <h1>Ride the <em>green line</em> across East Africa.</h1>
-      <p class="lede">Eco Bus connects the region's capitals with modern, low-emission coaches — pick your seat, pay by M-Pesa prompt, and get your <strong style="color:#fff">e-ticket instantly</strong>. Fares from <strong style="color:#fff">KSh 4,500</strong>.</p>
+      <p class="lede">Eco Bus connects the region's capitals with modern, low-emission coaches — pick your seat, pay via <strong style="color:#fff">M-Pesa Pochi la Biashara</strong>, and get your e-ticket once payment is confirmed. Fares from <strong style="color:#fff">KSh 4,500</strong>.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#book">Book a seat
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -483,7 +467,7 @@ footer a:hover{color:var(--lime)}
       <div class="book-head">
         <div>
           <h2>Book your seat</h2>
-          <p class="book-sub">Live fare estimate · pay with M-Pesa prompt · e-ticket instantly</p>
+          <p class="book-sub">Live fare estimate · pay via Pochi la Biashara · e-ticket after confirmation</p>
         </div>
         <button class="swap" id="swapBtn" title="Swap origin and destination">⇄ Swap</button>
       </div>
@@ -529,7 +513,7 @@ footer a:hover{color:var(--lime)}
             <a class="btn btn-line" id="waBtn" href="#" target="_blank" rel="noopener">Ask on WhatsApp
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.2-1.3A10 10 0 1 0 12 2zm5.6 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1a14 14 0 0 1-6.9-6c-.5-.9-.8-1.9-.5-2.7.2-.5.7-1.3 1.2-1.4h.9c.3 0 .5.2.7.6l1 2.3c.1.3 0 .5-.1.7l-.7.8c-.2.2-.3.4-.1.7a10 10 0 0 0 4.6 4c.3.1.5.1.7-.1l1-1.2c.2-.3.4-.3.7-.2l2.3 1.1c.3.2.5.3.5.6 0 .1 0 .5-.1.9z"/></svg></a>
           </div>
-          <div class="pay-note"><span class="pay">M-Pesa STK</span><span class="pay">MTN MoMo</span><span class="pay">Airtel Money</span><span class="pay">Pay at office</span></div>
+          <div class="pay-note"><span class="pay">M-Pesa · Pochi</span><span class="pay">Pay at office</span></div>
         </div>
       </div>
     </div>
@@ -541,7 +525,7 @@ footer a:hover{color:var(--lime)}
     <div class="sec-head reveal">
       <span class="eyebrow">Fares &amp; routes</span>
       <h2>Every border, one fair price.</h2>
-      <p class="sec-sub">All fares are per seat and include baggage allowance. Business class runs on the flagship Juba ⇄ Kampala line. Every booking comes with an instant e-ticket &amp; receipt.</p>
+      <p class="sec-sub">All fares are per seat and include baggage allowance. Business class runs on the flagship Juba ⇄ Kampala line. Every booking comes with an e-ticket &amp; receipt, released once your payment is confirmed.</p>
     </div>
     <div class="fares-grid">
       <article class="fare reveal d1">
@@ -665,7 +649,7 @@ footer a:hover{color:var(--lime)}
     <div class="t-wrap reveal">
       <div class="t-slide active"><p class="t-quote">Crossed Kampala–Nairobi overnight and woke up at the border with the stamps already sorted. Easiest trip I've ever made.</p><p class="t-who"><b>Aisha K.</b> · trader · Kampala → Nairobi</p></div>
       <div class="t-slide"><p class="t-quote">Business class to Kampala is genuinely airline-like. The hot meal and Wi-Fi were a very pleasant surprise.</p><p class="t-who"><b>Deng M.</b> · engineer · Juba → Kampala</p></div>
-      <div class="t-slide"><p class="t-quote">Got the M-Pesa prompt, keyed my PIN, and the e-ticket was on my screen before I locked my phone.</p><p class="t-who"><b>Brian O.</b> · student · Nairobi → Juba</p></div>
+      <div class="t-slide"><p class="t-quote">Sent the fare to their Pochi number, and minutes after the team confirmed it my e-ticket unlocked on the site.</p><p class="t-who"><b>Brian O.</b> · student · Nairobi → Juba</p></div>
       <div class="t-dots" role="tablist" aria-label="Testimonials">
         <button class="t-dot active" aria-label="Story 1"></button>
         <button class="t-dot" aria-label="Story 2"></button>
@@ -683,7 +667,7 @@ footer a:hover{color:var(--lime)}
     </div>
     <div class="faq-list reveal">
       <div class="faq-item"><button class="faq-q" aria-expanded="false">How does the M-Pesa payment work?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-a"><p>Choose M-Pesa at checkout and enter your Safaricom number. We send a <b>STK push prompt</b> to your phone — enter your M-Pesa PIN and the site confirms your payment automatically, then issues your e-ticket with the M-Pesa receipt code.</p></div></div>
+        <div class="faq-a"><p>Choose M-Pesa at checkout and enter your Safaricom number. Send the fare to our <b>Pochi la Biashara</b> number <b>0180 350 905</b> from your M-Pesa menu. Submit the M-Pesa confirmation code on the site — our team verifies the money landed and releases your e-ticket (also sent to you on WhatsApp).</p></div></div>
       <div class="faq-item"><button class="faq-q" aria-expanded="false">Will I get a ticket and a receipt?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
         <div class="faq-a"><p>Yes — the moment your booking is confirmed you get an e-ticket showing your seat number, bus and departure time, plus a payment receipt. Both can be downloaded as PDF, and you can always retrieve them under <b>My Booking</b> using your reference code (e.g. ECO-7K2M9X).</p></div></div>
       <div class="faq-item"><button class="faq-q" aria-expanded="false">What is the baggage allowance?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
@@ -705,7 +689,7 @@ footer a:hover{color:var(--lime)}
     <div class="cta-card reveal">
       <div>
         <h2>Ready to roll with Eco Bus?</h2>
-        <p>Lock your seat in under two minutes — get the M-Pesa prompt, key your PIN, grab your e-ticket, and leave the traffic (and the carbon) behind.</p>
+        <p>Lock your seat in under two minutes — send your fare to Pochi la Biashara, we confirm it, and your e-ticket is unlocked.</p>
       </div>
       <div class="cta-actions">
         <a class="btn btn-primary" href="https://wa.me/254780045322?text=Hello%20Eco%20Bus!%20I%27d%20like%20to%20book%20a%20seat." target="_blank" rel="noopener">WhatsApp us</a>
@@ -746,7 +730,7 @@ footer a:hover{color:var(--lime)}
     </div>
     <div class="foot-bottom">
       <span>© <span id="year"></span> Eco Bus. Fares shown per listed currency.</span>
-      <span>Made with 💚 in East Africa</span>
+      <span><a href="#office" style="opacity:.7">Office</a> · Made with 💚 in East Africa</span>
     </div>
   </div>
 </footer>
@@ -756,7 +740,7 @@ footer a:hover{color:var(--lime)}
   <div class="modal" role="dialog" aria-modal="true" aria-label="Book a seat">
     <button class="modal-x" data-close="bookModal" aria-label="Close">✕</button>
     <div class="steps-bar" id="stepsBar">
-      <div class="sdot on">1 · Trip</div><div class="sdot">2 · Seats</div><div class="sdot">3 · Pay</div><div class="sdot">4 · M-Pesa</div><div class="sdot">5 · Ticket</div>
+      <div class="sdot on">1 · Trip</div><div class="sdot">2 · Seats</div><div class="sdot">3 · Pay</div><div class="sdot">4 · Confirm</div><div class="sdot">5 · Ticket</div>
     </div>
     <div class="modal-body">
 
@@ -807,17 +791,14 @@ footer a:hover{color:var(--lime)}
         </div>
         <label class="lbl">Payment method</label>
         <div class="pay-grid" id="payGrid">
-          <button type="button" class="paycard on" data-method="M-Pesa"><b>M-Pesa</b><span>STK prompt — enter PIN on your phone</span></button>
-          <button type="button" class="paycard" data-method="MTN MoMo"><b>MTN MoMo</b><span>Mobile money</span></button>
-          <button type="button" class="paycard" data-method="Airtel Money"><b>Airtel Money</b><span>Mobile money</span></button>
+          <button type="button" class="paycard on" data-method="M-Pesa"><b>M-Pesa · Pochi</b><span>Send money to our Pochi number — we confirm, ticket unlocks</span></button>
           <button type="button" class="paycard" data-method="Pay at office"><b>Pay at office</b><span>Reserve now, pay before departure</span></button>
         </div>
         <div class="field" id="mpesaPhoneWrap" style="display:none;margin-top:.9rem">
-          <label for="bMpesaPhone">M-Pesa number to prompt (Safaricom)</label>
+          <label for="bMpesaPhone">M-Pesa number you'll pay from (optional)</label>
           <input id="bMpesaPhone" type="tel" placeholder="07XX XXX XXX">
         </div>
         <div class="sum-box" id="sumBox"></div>
-        <div class="sum-box" id="mpesaStatus" style="display:none"></div>
         <div class="bnav">
           <button class="btn btn-dark" id="back2">← Back</button>
           <button class="btn btn-primary" id="payBtn">Pay &amp; get e-ticket</button>
@@ -825,27 +806,34 @@ footer a:hover{color:var(--lime)}
       </section>
 
       <section class="bstep" data-bstep="4">
-        <h3 class="m-title">M-Pesa checkout</h3>
-        <p class="m-sub">Confirm the M-Pesa prompt below — don't close this window until your e-ticket is issued.</p>
-        <div class="mpesa-stage">
-          <div class="mpesa-phone">
-            <div class="mpesa-screen">
-              <div class="mpesa-head"><b>M-PESA</b><span class="mpesa-clock" id="mpesaClock">1:00</span></div>
-              <div class="mpesa-timer" aria-hidden="true"><i id="mpesaTimerBar" style="width:100%"></i></div>
-              <div class="mpesa-body" id="mpesaBody"></div>
-            </div>
-          </div>
+        <h3 class="m-title">Pay via M-Pesa — Pochi la Biashara</h3>
+        <p class="m-sub">Send the exact total to our Pochi number, then enter your M-Pesa confirmation code. Your e-ticket is released once we confirm the money.</p>
+        <div class="pochi-box">
+          <div class="pochi-amount" id="pochiAmount"></div>
+          <div class="pochi-num" id="pochiNumber"></div>
+          <small class="pochi-cap">Pochi la Biashara · ECO BUS · M-Pesa → Send Money</small>
+          <button type="button" class="btn btn-dark" id="copyPochi">⧉ Copy number</button>
         </div>
-        <p class="mpesa-caption" id="mpesaCaption"></p>
+        <ol class="pochi-steps">
+          <li>Open <b>M-Pesa</b> → <b>Send Money</b> (or <b>Pochi</b>) on your phone.</li>
+          <li>Send <b id="pochiStepsAmount"></b> to <b>0180 350 905</b>.</li>
+          <li>M-Pesa texts you a confirmation code (e.g. QK71GH8Y9A).</li>
+          <li>Enter that code below — we verify and unlock your e-ticket.</li>
+        </ol>
+        <div class="field" style="margin-top:1rem">
+          <label for="bMpesaCode">M-Pesa confirmation code (from the SMS)</label>
+          <input id="bMpesaCode" placeholder="e.g. QK71GH8Y9A" maxlength="16" style="text-transform:uppercase">
+        </div>
+        <div class="sum-box" id="pochiErr" style="display:none"></div>
         <div class="bnav">
-          <button class="btn btn-dark" id="mpesaBackBtn">← Cancel payment</button>
-          <span></span>
+          <button class="btn btn-dark" id="mpesaBackBtn">← Back</button>
+          <button class="btn btn-primary" id="pochiSubmitBtn">Submit for confirmation</button>
         </div>
       </section>
 
       <section class="bstep" data-bstep="5">
-        <h3 class="m-title" id="t4Title">You're booked! 🎉</h3>
-        <p class="m-sub">Save or print your ticket — present the booking reference at boarding.</p>
+        <h3 class="m-title" id="t4Title">Booking submitted ⏳</h3>
+        <p class="m-sub">Your e-ticket appears here and unlocks once your payment is confirmed.</p>
         <div id="ticketView"></div>
         <div class="tv-actions">
           <button class="btn btn-primary" id="dlTicket">⬇ Download ticket (PDF)</button>
@@ -853,7 +841,7 @@ footer a:hover{color:var(--lime)}
           <button class="btn btn-dark" id="waShare">Send to WhatsApp</button>
           <button class="btn btn-dark" id="newBook">Book another</button>
         </div>
-        <p class="demo-note">M-Pesa pays for real once MPESA_ENDPOINT is configured — see the README in ecobus-mpesa-api. MTN MoMo &amp; Airtel are still demo-simulated.</p>
+        <p class="demo-note">E-tickets unlock after payment confirmation (Pochi la Biashara). Pay-at-office bookings are marked paid at the terminal.</p>
       </section>
 
     </div>
@@ -866,7 +854,7 @@ footer a:hover{color:var(--lime)}
     <button class="modal-x" data-close="lookupModal" aria-label="Close">✕</button>
     <div class="modal-body">
       <h3 class="m-title">Find my booking</h3>
-      <p class="m-sub">Enter the booking reference from your e-ticket (e.g. ECO-7K2M9X) to view your ticket and receipt again.</p>
+      <p class="m-sub">Enter your booking reference (e.g. ECO-7K2M9X). Still awaiting confirmation? Enter the 6-digit release code from Eco Bus to unlock your ticket.</p>
       <div class="lookup-row">
         <input id="refInput" placeholder="ECO-XXXXXX" aria-label="Booking reference">
         <button class="btn btn-primary" id="refBtn">Find</button>
@@ -877,6 +865,23 @@ footer a:hover{color:var(--lime)}
   </div>
 </div>
 
+
+<!-- ============ OFFICE MODAL — payment confirmation (staff) ============ -->
+<div class="modal-backdrop" id="officeModal" aria-hidden="true">
+  <div class="modal" style="max-width:640px" role="dialog" aria-modal="true" aria-label="Office payment confirmation">
+    <button class="modal-x" data-close="officeModal" aria-label="Close">✕</button>
+    <div class="modal-body">
+      <h3 class="m-title">Office — confirm payments</h3>
+      <p class="m-sub">Check the money against your Pochi SMS (or office receipts), then confirm. Customers on other phones unlock their e-ticket with the 6-digit release code you send them.</p>
+      <div id="officeList"></div>
+      <div class="lookup-row" style="margin-top:.8rem">
+        <input id="officeRef" placeholder="Booking ref e.g. ECO-7K2M9X" aria-label="Booking reference">
+        <button class="btn btn-primary" id="officeRefBtn">Get code</button>
+      </div>
+      <div id="officeOut"></div>
+    </div>
+  </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
@@ -884,15 +889,16 @@ footer a:hover{color:var(--lime)}
 /* WhatsApp: 0780 045 322 (+254780045322) → wa.me needs international format 254780045322 */
 const WA_NUMBER = "254780045322";
 
-/* M-Pesa live payments (Safaricom Daraja STK Push).
-   Backend: the ecobus-mpesa-api folder (api/mpesa-stk.js, mpesa-status.js,
-   mpesa-callback.js for Vercel — your sandbox credentials are already inside).
-   1) `vercel --prod` inside ecobus-mpesa-api, then paste the two URLs below.
-   2) Sandbox only prompts the test MSISDNs on your Daraja portal
-      (Test Credentials page) — other numbers get "Invalid PartyA".
-   Leave both empty to keep demo (simulated) payments. */
-const MPESA_ENDPOINT = ""; // e.g. "https://eco-bus-api.vercel.app/api/mpesa-stk"
-const MPESA_STATUS   = ""; // e.g. "https://eco-bus-api.vercel.app/api/mpesa-status"
+/* M-Pesa payments: Pochi la Biashara + manual confirmation.
+   Customers send the fare to the Pochi number below and submit the
+   M-Pesa confirmation code. Your team verifies the money landed and
+   releases the e-ticket — via Office mode (footer → Office, or #office).
+   KES routes only; UGX / SSP routes use "Pay at office". */
+const POCHI_NUMBER = "0180350905";   // Pochi la Biashara (as dialled)
+const POCHI_PRETTY = "0180 350 905";
+/* Office mode derives each booking's 6-digit release code from this secret;
+   customers can only unlock their e-ticket with the code your team sends. */
+const RELEASE_SECRET = "EcoBus-Release-2026";
 
 const FARES = {
   "kampala>nairobi": { amount: 4500,   currency: "KSh" },
@@ -943,7 +949,6 @@ const $  = (s, c=document) => c.querySelector(s);
 const $$ = (s, c=document) => [...c.querySelectorAll(s)];
 const fmt = (c, a) => `${c} ${Number(a).toLocaleString("en-US")}`;
 const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-const normMpesa = p => { let d=String(p||"").replace(/\D/g,""); if(d.length===10&&d.startsWith("0")) d="254"+d.slice(1); return d; };
 const ALPHA = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 const rand6 = () => Array.from({length:6}, () => ALPHA[Math.floor(Math.random()*ALPHA.length)]).join("");
 function niceDate(d){ try{ return new Date(d+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric"}); }catch(e){ return d; } }
@@ -954,6 +959,13 @@ const KEY="ecobus_bookings"; let MEM=[];
 function loadAll(){ try{ const raw=localStorage.getItem(KEY); return raw?JSON.parse(raw):MEM; }catch(e){ return MEM; } }
 function saveAll(list){ MEM=list; try{ localStorage.setItem(KEY, JSON.stringify(list)); }catch(e){} }
 function persist(b){ const list=loadAll(); list.unshift(b); saveAll(list.slice(0,60)); }
+function updateBooking(ref, patch){
+  const list=loadAll(); const i=list.findIndex(x=>x.ref===ref);
+  if(i<0) return null;
+  list[i]={...list[i], ...patch}; saveAll(list); return list[i];
+}
+/* 6-digit release code, deterministic from (ref + secret) — office mode computes it */
+function releaseCode(ref){ return String(hashStr(ref+"|"+RELEASE_SECRET)%1000000).padStart(6,"0"); }
 
 let toastTimer;
 function toast(msg){ let t=$("#toast"); if(!t){ t=document.createElement("div"); t.id="toast"; t.style.cssText="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0b2b20;color:#fff;padding:13px 20px;border-radius:14px;font-weight:600;font-size:.9rem;z-index:400;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 16px 40px -14px rgba(0,0,0,.5)"; document.body.appendChild(t); } t.textContent=msg; t.style.opacity="1"; t.style.transform="translateX(-50%)"; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{ t.style.opacity="0"; },3000); }
@@ -1020,7 +1032,7 @@ const state={ from:"kampala", to:"nairobi", date:"", cls:"standard", pax:1, time
 let occupied=new Set(), currentTicket=null;
 
 function showModal(m){ m.classList.add("show"); m.setAttribute("aria-hidden","false"); document.body.classList.add("no-scroll"); }
-function hideModal(m){ m.classList.remove("show"); m.setAttribute("aria-hidden","true"); document.body.classList.remove("no-scroll"); if(m===bookModal) stopMpesa(); }
+function hideModal(m){ m.classList.remove("show"); m.setAttribute("aria-hidden","true"); document.body.classList.remove("no-scroll"); }
 $$(".modal-x").forEach(x=>x.addEventListener("click",()=>hideModal($("#"+x.dataset.close))));
 $$(".modal-backdrop").forEach(bd=>bd.addEventListener("click",e=>{ if(e.target===bd) hideModal(bd); }));
 addEventListener("keydown",e=>{ if(e.key==="Escape") $$(".modal-backdrop.show").forEach(hideModal); });
@@ -1036,13 +1048,21 @@ function openBooking(){
   if(!FARES[key]){ toast("That route is coming soon — pick a supported route."); return; }
   state.from=fromSel.value; state.to=toSel.value; state.cls=classSel.value; state.pax=+paxSel.value;
   state.date=dateInp.value||new Date().toISOString().split("T")[0];
-  state.seats=[]; state.method="M-Pesa";
+  state.seats=[];
   $("#bDate").min=dateInp.min; $("#bDate").value=state.date;
   $("#bPax").value=String(state.pax); $("#bClass").value=state.cls;
   $("#bName").value=""; $("#bPhone").value=""; $("#bMpesaPhone").value="";
-  $$("#payGrid .paycard").forEach(c=>c.classList.toggle("on", c.dataset.method==="M-Pesa"));
-  $("#mpesaPhoneWrap").style.display="none"; $("#mpesaStatus").style.display="none";
-  stopMpesa(); renderTrip(); gotoStep(1); showModal(bookModal);
+  /* Pochi la Biashara is M-Pesa (KES) — disable it on UGX / SSP routes */
+  const fare=fareFor(key,state.cls), kesRoute=fare.currency==="KSh";
+  const mpCard=$$("#payGrid .paycard").find(c=>c.dataset.method==="M-Pesa");
+  mpCard.disabled=!kesRoute;
+  mpCard.querySelector("span").textContent=kesRoute
+    ? "Send money to our Pochi number — we confirm, ticket unlocks"
+    : `KES only — this route bills in ${fare.currency}. Pay at office/agent`;
+  state.method=kesRoute?"M-Pesa":"Pay at office";
+  $$("#payGrid .paycard").forEach(c=>c.classList.toggle("on", c.dataset.method===state.method));
+  $("#mpesaPhoneWrap").style.display=state.method==="M-Pesa"?"":"none";
+  renderTrip(); gotoStep(1); showModal(bookModal);
 }
  $("#openBook").addEventListener("click", openBooking);
  $("#navLookup").addEventListener("click", e=>{ e.preventDefault(); openLookup(); });
@@ -1134,199 +1154,168 @@ function renderDetails(){
     <div class="sum-row"><span>Seat(s)</span><b>${state.seats.join(", ")}</b></div>
     <div class="sum-row"><span>Class</span><b>${cls}</b></div>
     <div class="sum-row"><span>Fare</span><b>${state.pax} × ${fmt(fare.currency, fare.amount)}</b></div>
-    <div class="sum-row total"><span>Total — ${state.method==="Pay at office"?"due at office":"to pay now"}</span><b>${fmt(fare.currency, fare.amount*state.pax)}</b></div>`;
-  $("#payBtn").textContent = state.method==="Pay at office" ? "Reserve my seats" : "Pay & get e-ticket";
+    <div class="sum-row total"><span>Total — ${state.method==="Pay at office"?"due at office":`send to Pochi ${POCHI_PRETTY}`}</span><b>${fmt(fare.currency, fare.amount*state.pax)}</b></div>`;
+  $("#payBtn").textContent = state.method==="Pay at office" ? "Reserve my seats" : "Pay via M-Pesa →";
 }
 $$("#payGrid .paycard").forEach(c=>c.addEventListener("click",()=>{
+  if(c.disabled) return;
   state.method=c.dataset.method;
   $$("#payGrid .paycard").forEach(x=>x.classList.remove("on"));
   c.classList.add("on");
-  const wrap=$("#mpesaPhoneWrap");
-  if(c.dataset.method==="M-Pesa"){
-    wrap.style.display="";
-    if(!$("#bMpesaPhone").value) $("#bMpesaPhone").value=$("#bPhone").value.trim();
-  } else { wrap.style.display="none"; $("#mpesaStatus").style.display="none"; }
+  $("#mpesaPhoneWrap").style.display = c.dataset.method==="M-Pesa" ? "" : "none";
   renderDetails();
 }));
 
-/* -------- PAY: live M-Pesa STK Push, or simulated fallback -------- */
- $("#payBtn").addEventListener("click", async ()=>{
+/* -------- PAY: Pochi la Biashara (M-Pesa) or reserve at office -------- */
+ $("#payBtn").addEventListener("click", ()=>{
   const name=$("#bName").value.trim(), phone=$("#bPhone").value.trim();
   if(name.length<2){ toast("Please enter the passenger's full name."); return; }
   if(phone.replace(/\D/g,"").length<9){ toast("Please enter a valid phone number."); return; }
-
+  const fare=fareFor(`${state.from}>${state.to}`, state.cls);
   if(state.method==="M-Pesa"){
-    if(MPESA_ENDPOINT){ await startMpesaPush(name, phone); }
-    else{ openMpesaPrompt({ name, phone, demo:true }); } /* demo STK prompt page */
-    return;
+    if(fare.currency!=="KSh"){ toast("Pochi la Biashara is KES-only — pay for this route at the office or an agent."); return; }
+    renderPochiStep(name, phone); gotoStep(4); return;
   }
-
-  /* SIMULATED PAYMENT — used for MoMo / Airtel. Integrate their APIs the same way as M-Pesa. */
-  const btn=$("#payBtn"); btn.classList.add("loading"); btn.textContent="Processing…";
-  setTimeout(()=>{ btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket"; createBooking(name, phone); }, 1600);
+  createBooking(name, phone); /* Pay at office → RESERVED */
 });
 
-/* -------- M-Pesa checkout prompt page (step 4) -------- */
-const MPESA_TTL_DEMO=60, MPESA_TTL_LIVE=120;
-const mp={ timer:null, poll:null, left:60, ttl:60, pin:"", mode:"pin", demo:true,
-           name:"", phone:"", msisdn:"", currency:"KSh", amount:0, receipt:null, err:"" };
+/* -------- step 4: pay to Pochi la Biashara, submit the M-Pesa code -------- */
+let pendingName="", pendingPhone="";
 
-function prettyMsisdn(d){ return d.length===12 ? `+${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)} ${d.slice(9)}` : d; }
-function mpesaReceipt(){ return "Q"+rand6()+rand6().slice(0,3); }
-function setMpesaMode(mode){ mp.mode=mode; renderMpesaBody(); }
-function stopMpesa(){ clearInterval(mp.timer); clearInterval(mp.poll); }
-
-function openMpesaPrompt(opts){
-  mp.name=opts.name; mp.phone=opts.phone; mp.pin=""; mp.receipt=null; mp.err="";
-  mp.demo=!!opts.demo; mp.ttl=mp.demo?MPESA_TTL_DEMO:MPESA_TTL_LIVE; mp.left=mp.ttl;
-  mp.msisdn=normMpesa(($("#bMpesaPhone").value||"").trim()||mp.phone);
-  const key=`${state.from}>${state.to}`, fare=fareFor(key, state.cls);
-  mp.currency=fare.currency; mp.amount=fare.amount*state.pax;
-  $("#mpesaCaption").textContent = mp.demo
-    ? "Demo mode — this simulated prompt stands in for the Safaricom STK push until MPESA_ENDPOINT is configured. Enter any 4-digit PIN."
-    : "Real STK push sent — approve it on your phone to complete the payment.";
-  stopMpesa(); gotoStep(4);
-  setMpesaMode(mp.demo ? "pin" : "waiting");
-  startMpesaCountdown();
+function renderPochiStep(name, phone){
+  pendingName=name; pendingPhone=phone;
+  const fare=fareFor(`${state.from}>${state.to}`, state.cls);
+  const total=fmt(fare.currency, fare.amount*state.pax);
+  $("#pochiAmount").textContent=total;
+  $("#pochiNumber").textContent=POCHI_PRETTY;
+  $("#pochiStepsAmount").textContent=total;
+  $("#bMpesaCode").value="";
+  $("#pochiErr").style.display="none";
 }
 
-function startMpesaCountdown(){
-  clearInterval(mp.timer);
-  paintMpesaClock();
-  mp.timer=setInterval(()=>{
-    mp.left--; paintMpesaClock();
-    if(mp.left<=0){ stopMpesa(); if(mp.mode==="pin"||mp.mode==="waiting") setMpesaMode("expired"); }
-  },1000);
-}
-function paintMpesaClock(){
-  $("#mpesaClock").textContent=`${Math.floor(mp.left/60)}:${String(mp.left%60).padStart(2,"0")}`;
-  $("#mpesaTimerBar").style.width=Math.max(mp.left/mp.ttl*100,0)+"%";
-}
-
-function renderMpesaBody(){
-  const body=$("#mpesaBody"), route=`${PLAIN[state.from]} → ${PLAIN[state.to]}`;
-  if(mp.mode==="pin"){
-    body.innerHTML=`
-      <div class="mpesa-req"><div class="mp">🌿 ECOBUS</div>
-        Enter your M-Pesa PIN to pay <b>${fmt(mp.currency,mp.amount)}</b> for <b>${route}</b> · ${state.pax} seat(s) · departs ${state.time}.</div>
-      <div class="mpesa-msisdn">📱 ${esc(prettyMsisdn(mp.msisdn))}</div>
-      <div class="mpesa-pinrow" id="mpesaPinRow"><i></i><i></i><i></i><i></i></div>
-      <div class="mpesa-key" id="mpesaKey"></div>
-      <div class="mpesa-actions">
-        <button type="button" class="mpesa-btn" id="mpesaCancelBtn">CANCEL</button>
-        <button type="button" class="mpesa-btn solid" id="mpesaOkBtn" disabled>OK</button>
-      </div>`;
-    const kw=$("#mpesaKey");
-    ["1","2","3","4","5","6","7","8","9",null,"0","del"].forEach(k=>{
-      const b=document.createElement("button"); b.type="button";
-      if(k===null){ b.disabled=true; b.style.visibility="hidden"; }
-      else if(k==="del"){ b.setAttribute("aria-label","Delete last digit"); b.textContent="⌫";
-        b.addEventListener("click",()=>{ mp.pin=mp.pin.slice(0,-1); paintMpesaPin(); }); }
-      else{ b.textContent=k; b.setAttribute("aria-label","Digit "+k);
-        b.addEventListener("click",()=>{ if(mp.pin.length<4){ mp.pin+=k; paintMpesaPin(); } }); }
-      kw.appendChild(b);
-    });
-    paintMpesaPin();
-    $("#mpesaOkBtn").addEventListener("click", verifyMpesaPin);
-    $("#mpesaCancelBtn").addEventListener("click", cancelMpesa);
-  } else if(mp.mode==="verifying"){
-    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-spin"></div><b>Verifying your payment…</b><span style="font-size:.8rem;color:var(--muted)">Don't close this window.</span></div>`;
-  } else if(mp.mode==="waiting"){
-    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">📩</div><b>Check your phone</b>
-      <span>We sent an M-Pesa prompt to <b>${esc(prettyMsisdn(mp.msisdn))}</b>.<br>Enter your PIN there to pay <b>${fmt(mp.currency,mp.amount)}</b> — this page confirms automatically.</span></div>`;
-  } else if(mp.mode==="success"){
-    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">✅</div><b>Payment received</b><span>M-Pesa receipt <b>${esc(mp.receipt)}</b> — issuing your e-ticket…</span></div>`;
-  } else if(mp.mode==="expired"||mp.mode==="failed"){
-    const exp=mp.mode==="expired";
-    body.innerHTML=`<div class="mpesa-center"><div class="mpesa-big">${exp?"⏰":"⚠️"}</div><b>${exp?"Request expired":"Payment not completed"}</b>
-      <span>${exp?`For security this request timed out after ${mp.ttl} seconds.`:esc(mp.err||"The M-Pesa request was cancelled or failed.")}</span>
-      <button type="button" class="mpesa-btn solid" id="mpesaAgainBtn" style="min-width:190px">↻ Send again</button></div>`;
-    $("#mpesaAgainBtn").addEventListener("click", retryMpesa);
+ $("#copyPochi").addEventListener("click", async ()=>{
+  const ok=()=>toast("Pochi number copied — "+POCHI_PRETTY);
+  try{ await navigator.clipboard.writeText(POCHI_NUMBER); ok(); }
+  catch(e){
+    const i=document.createElement("input"); i.value=POCHI_NUMBER; i.style.position="fixed"; i.style.opacity="0";
+    document.body.appendChild(i); i.select();
+    try{ document.execCommand("copy"); ok(); }catch(_){ toast("Copy failed — dial "+POCHI_NUMBER+" in M-Pesa manually."); }
+    i.remove();
   }
-}
+});
 
-function paintMpesaPin(){
-  const boxes=$$("#mpesaPinRow i"); if(!boxes.length) return;
-  boxes.forEach((b,i)=>{ b.classList.toggle("f", i<mp.pin.length); b.textContent=i<mp.pin.length?"•":""; });
-  const ok=$("#mpesaOkBtn"); if(ok) ok.disabled=mp.pin.length!==4;
-}
+ $("#mpesaBackBtn").addEventListener("click", ()=>gotoStep(3));
 
-function verifyMpesaPin(){
-  if(mp.pin.length!==4) return;
-  setMpesaMode("verifying");
-  setTimeout(()=>{
-    mp.receipt=mpesaReceipt(); stopMpesa(); setMpesaMode("success");
-    setTimeout(()=>createBooking(mp.name, mp.phone, { paid:true, payRef:mp.receipt }), 900);
-  }, 1800);
-}
-
-function retryMpesa(){
-  if(mp.demo){ openMpesaPrompt({ name:mp.name, phone:mp.phone, demo:true }); }
-  else{ startMpesaPush(mp.name, mp.phone); }
-}
-
-function cancelMpesa(){ stopMpesa(); gotoStep(3); toast("M-Pesa payment cancelled."); }
-
- $("#mpesaBackBtn").addEventListener("click", cancelMpesa);
-
-async function startMpesaPush(name, phone){
-  const btn=$("#payBtn");
-  const msisdn=normMpesa($("#bMpesaPhone").value||phone);
-  if(!/^254(7|1)\d{8}$/.test(msisdn)){ toast("Enter a valid Safaricom number for M-Pesa, e.g. 07XX XXX XXX."); return; }
-  btn.classList.add("loading"); btn.textContent="Sending prompt…";
-  try{
-    const r=await fetch(MPESA_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({ phone:msisdn, route:`${state.from}>${state.to}`, cls:state.cls, pax:state.pax, date:state.date })});
-    const d=await r.json();
-    if(!d.ok) throw new Error(d.error||"Could not send the M-Pesa prompt.");
-    btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket";
-    openMpesaPrompt({ name, phone, demo:false });
-    mp.poll=setInterval(async()=>{
-      try{
-        const s=await fetch(MPESA_STATUS+"?checkoutRequestID="+encodeURIComponent(d.checkoutRequestID)).then(x=>x.json());
-        if(s.status==="paid"){
-          stopMpesa(); mp.receipt=s.receipt||mpesaReceipt(); setMpesaMode("success");
-          setTimeout(()=>createBooking(name, phone, { paid:true, payRef:mp.receipt }), 900);
-          return;
-        }
-        if(s.status==="failed"||s.status==="cancelled"){
-          stopMpesa(); mp.err=s.desc||"M-Pesa payment not completed."; setMpesaMode("failed"); return;
-        }
-      }catch(e){}
-    },3000);
-  }catch(err){
-    btn.classList.remove("loading"); btn.textContent="Pay & get e-ticket";
-    toast(err.message||"Network error — please try again.");
+ $("#pochiSubmitBtn").addEventListener("click", ()=>{
+  const code=$("#bMpesaCode").value.trim().toUpperCase();
+  const err=$("#pochiErr");
+  if(!/^[A-Z0-9]{6,16}$/.test(code)){
+    err.innerHTML="<p><b>Enter the M-Pesa confirmation code</b> from the SMS M-Pesa sent you after sending the money (e.g. QK71GH8Y9A). Bookings are only confirmed against real payments.</p>";
+    err.style.display=""; return;
   }
-}
-
+  createBooking(pendingName, pendingPhone, { payRef:code });
+});
 
 function createBooking(name, phone, extra={}){
   const key=`${state.from}>${state.to}`, fare=fareFor(key, state.cls), t=state.bus;
-  const paid = extra.paid !== undefined ? !!extra.paid : (state.method!=="Pay at office");
   const b={
     ref:"ECO-"+rand6(), receiptNo:"R-"+rand6(),
     key, from:state.from, to:state.to,
     date:state.date, time:t.time, arr:t.arr,
     cls:clsUsedFor(key, state.cls), pax:state.pax, seats:[...state.seats],
     name, phone, method:state.method,
+    mpesaNo: state.method==="M-Pesa" ? ($("#bMpesaPhone").value.trim()||phone) : null,
     currency:fare.currency, perSeat:fare.amount, total:fare.amount*state.pax,
     payRef: extra.payRef||null,
-    status: paid ? "PAID" : "RESERVED",
+    /* e-ticket unlocks ONLY when the office confirms the money */
+    status: state.method==="Pay at office" ? "RESERVED" : "AWAITING",
     bus:{ name:t.bus, plate:t.plate, type:t.type },
     createdAt:new Date().toISOString()
   };
   persist(b); currentTicket=b;
-  $("#t4Title").textContent = paid ? "Payment successful — you're booked! 🎉" : "Seats reserved — pay at the office 🎉";
-  $("#ticketView").innerHTML = renderTicketHTML(b);
+  renderStep5(b);
+  toast(b.status==="AWAITING"
+    ? "Booking submitted — your e-ticket unlocks once payment is confirmed."
+    : "Seats reserved — pay at the office to get your e-ticket.");
+}
+
+function renderStep5(b){
+  const pending=b.status!=="PAID";
+  $("#t4Title").textContent = b.status==="AWAITING" ? "Payment submitted — awaiting confirmation ⏳"
+    : b.status==="RESERVED" ? "Seats reserved — pay at the office 🎉"
+    : "Payment confirmed — you're booked! 🎉";
+  $("#ticketView").innerHTML = pending ? renderPendingHTML(b) : renderTicketHTML(b);
+  $("#dlTicket").style.display = pending ? "none" : "";
+  $("#dlReceipt").style.display = pending ? "none" : "";
+  if(pending) wirePending($("#ticketView"), b, nb=>renderStep5(nb));
   gotoStep(5);
-  toast(paid ? "Payment received ✅ e-ticket ready!" : "Seats reserved ✅");
+}
+
+function pendingWaMsg(b){
+  return `ECO BUS — PAYMENT SUBMITTED
+Ref: ${b.ref}
+Passenger: ${b.name}
+Trip: ${PLAIN[b.from]} -> ${PLAIN[b.to]}
+Date: ${niceDate(b.date)} · departs ${b.time}
+Bus: ${b.bus.name} (${b.bus.plate})
+Seats: ${b.seats.join(", ")} (${b.cls})
+Total sent: ${fmt(b.currency,b.total)}
+Paid to Pochi: ${POCHI_NUMBER}
+M-Pesa code: ${b.payRef||"—"}
+From: ${b.mpesaNo||b.phone}
+Please confirm receipt and send my release code.`;
+}
+
+function renderPendingHTML(b){
+  return `
+  <div class="ticket-view pending">
+    <div class="tv-top">
+      <div class="tv-brand">🌿 ECO BUS<small>Cross-border coach travel</small></div>
+      <div class="tv-ref">${b.ref}<small>Booking reference</small></div>
+      <span class="tv-status res">● ${b.status==="AWAITING"?"AWAITING CONFIRMATION":"RESERVED"}</span>
+    </div>
+    <div class="tv-body">
+      <div class="tv-route">${FLAGS[b.from]} ${PLAIN[b.from]} <span style="color:var(--emerald)">→</span> ${FLAGS[b.to]} ${PLAIN[b.to]}</div>
+      <p style="font-size:.92rem;color:var(--muted);line-height:1.6;margin:.2rem 0 .6rem">
+        ${b.status==="AWAITING"
+          ? `Your submission is in. Once our team confirms the money on <b>Pochi la Biashara ${POCHI_PRETTY}</b>${b.payRef?` (your M-Pesa code <b>${esc(b.payRef)}</b>)`:""}, the e-ticket unlocks here and is sent to you on WhatsApp.`
+          : `Your seats are held. Pay the total at any Eco Bus office or agent — the e-ticket is released the moment the office confirms your payment.`}
+      </p>
+      <div class="tv-grid">
+        <div class="tv-cell"><small>Passenger</small><b>${esc(b.name)}</b></div>
+        <div class="tv-cell"><small>Travel date</small><b>${niceDate(b.date)}</b></div>
+        <div class="tv-cell"><small>Departure → arrival</small><b>${b.time} → ${b.arr}</b></div>
+        <div class="tv-cell"><small>Seat(s)</small><b>${b.seats.join(", ")}</b></div>
+        <div class="tv-cell"><small>Total</small><b>${fmt(b.currency,b.total)}</b></div>
+        <div class="tv-cell"><small>${b.status==="AWAITING"?"Paid to":"Amount"}</small><b>${b.status==="AWAITING"?"Pochi "+POCHI_PRETTY:fmt(b.currency,b.total)}</b></div>
+      </div>
+      <div class="release-row">
+        <input id="releaseInput" placeholder="Release code (6 digits)" inputmode="numeric" maxlength="6" aria-label="Release code">
+        <button type="button" class="btn btn-primary" id="releaseBtn">Unlock e-ticket</button>
+      </div>
+      <a class="btn btn-dark" style="width:100%" id="waSubmit" href="#" target="_blank" rel="noopener">Send booking details on WhatsApp</a>
+      <div class="tv-note" style="text-align:center">Keep your reference <b>${b.ref}</b> — check progress anytime under “Find my booking”.</div>
+    </div>
+  </div>`;
+}
+
+function wirePending(container, b, onConfirmed){
+  const wb=$("#waSubmit",container);
+  if(wb) wb.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pendingWaMsg(b))}`;
+  const bi=$("#releaseInput",container), bb=$("#releaseBtn",container);
+  if(bb&&bi) bb.addEventListener("click",()=>{
+    if(bi.value.trim()===releaseCode(b.ref)){
+      const nb=updateBooking(b.ref,{status:"PAID"});
+      toast("Payment confirmed ✅ e-ticket unlocked!");
+      onConfirmed(nb||b);
+    } else toast("Wrong release code — request it from Eco Bus on WhatsApp "+WA_NUMBER+".");
+  });
 }
 
 /* =================== e-ticket rendering =================== */
 function renderTicketHTML(b){
   const paid=b.status==="PAID";
-  const payLine=`${b.method}${b.payRef ? " · M-Pesa receipt "+b.payRef : ""}`;
+  const payLine=b.method==="M-Pesa" ? `M-Pesa · Pochi la Biashara ${POCHI_PRETTY}${b.payRef?" · code "+b.payRef:""}` : b.method+(b.payRef?" · code "+b.payRef:"");
   return `
   <div class="ticket-view">
     <div class="tv-top">
@@ -1448,7 +1437,7 @@ function downloadReceipt(b){
  $("#waShare").addEventListener("click",()=>{
   if(!currentTicket)return;
   const b=currentTicket;
-  const msg=`Eco Bus booking ${b.ref} ${b.status}%0ARoute: ${PLAIN[b.from]} -> ${PLAIN[b.to]}%0ADate: ${niceDate(b.date)} · departs ${b.time}%0ABus: ${b.bus.name} (${b.bus.plate})%0ASeats: ${b.seats.join(", ")}%0ATotal: ${fmt(b.currency,b.total)} (${b.method})`.replace(/ /g,"%20");
+  const msg=`Eco Bus booking ${b.ref} ${b.status}%0ARoute: ${PLAIN[b.from]} -> ${PLAIN[b.to]}%0ADate: ${niceDate(b.date)} · departs ${b.time}%0ABus: ${b.bus.name} (${b.bus.plate})%0ASeats: ${b.seats.join(", ")}%0ATotal: ${fmt(b.currency,b.total)} (${b.method}${b.method==="M-Pesa"?" · Pochi "+POCHI_PRETTY:""})`.replace(/ /g,"%20");
   window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,"_blank");
 });
  $("#newBook").addEventListener("click",()=>{ hideModal(bookModal); openBooking(); });
@@ -1460,15 +1449,60 @@ function openLookup(){ showModal(lookupModal); setTimeout(()=>$("#refInput").foc
   const res=$("#lookupResult"), act=$("#lookupActions");
   if(!code){ toast("Enter your booking reference first."); return; }
   const b=loadAll().find(x=>x.ref===code);
-  if(!b){ res.innerHTML=`<p class="m-sub" style="margin-top:1rem">No booking found for <b>${esc(code)}</b>. Check the code on your e-ticket.</p>`; act.innerHTML=""; return; }
-  res.innerHTML=renderTicketHTML(b);
-  act.innerHTML="";
   const mk=(label,cls,fn)=>{ const x=document.createElement("button"); x.className=cls; x.textContent=label; x.addEventListener("click",fn); act.appendChild(x); };
-  mk("⬇ Ticket PDF","btn btn-primary",()=>downloadTicket(b));
-  mk("⬇ Receipt PDF","btn btn-dark",()=>downloadReceipt(b));
+  if(!b){ res.innerHTML=`<p class="m-sub" style="margin-top:1rem">No booking found for <b>${esc(code)}</b> on this device. Bookings made on your phone are stored here — or check the ticket Eco Bus sent you on WhatsApp.</p>`; act.innerHTML=""; return; }
+  if(b.status==="PAID"){
+    res.innerHTML=renderTicketHTML(b);
+    mk("⬇ Ticket PDF","btn btn-primary",()=>downloadTicket(b));
+    mk("⬇ Receipt PDF","btn btn-dark",()=>downloadReceipt(b));
+  }else{
+    res.innerHTML=renderPendingHTML(b);
+    wirePending(res, b, nb=>{
+      res.innerHTML=renderTicketHTML(nb); act.innerHTML="";
+      mk("⬇ Ticket PDF","btn btn-primary",()=>downloadTicket(nb));
+      mk("⬇ Receipt PDF","btn btn-dark",()=>downloadReceipt(nb));
+    });
+  }
   mk("Book another","btn btn-dark",()=>{ hideModal(lookupModal); openBooking(); });
 });
  $("#refInput").addEventListener("keydown",e=>{ if(e.key==="Enter") $("#refBtn").click(); });
+
+/* ============ office mode — confirm payments & issue release codes ============ */
+const officeModal=$("#officeModal");
+function openOffice(){ renderOfficeList(); $("#officeRef").value=""; $("#officeOut").innerHTML=""; showModal(officeModal); }
+function renderOfficeList(){
+  const box=$("#officeList");
+  const list=loadAll().filter(b=>b.status!=="PAID");
+  if(!list.length){ box.innerHTML=`<p class="m-sub">No open bookings on this device. Use “Get code” below for bookings made on customers' phones.</p>`; return; }
+  box.innerHTML=list.map(b=>`
+    <div class="office-row">
+      <div style="min-width:0"><b>${b.ref}</b> · ${esc(b.name)} · ${PLAIN[b.from]}→${PLAIN[b.to]} · ${niceDate(b.date)} ${b.time}<br>
+      <small>${b.seats.join(", ")} · ${fmt(b.currency,b.total)} · ${b.method}${b.payRef?" · M-Pesa code "+esc(b.payRef):""} · <b style="color:var(--emerald-2)">${b.status}</b></small></div>
+      <button type="button" class="btn btn-primary" data-confirm="${b.ref}">Confirm paid</button>
+    </div>`).join("");
+  $$("[data-confirm]",box).forEach(btn=>btn.addEventListener("click",()=>{
+    const nb=updateBooking(btn.dataset.confirm,{status:"PAID"});
+    toast(nb?nb.ref+" marked PAID ✅":"Booking not found");
+    renderOfficeList();
+  }));
+}
+ $("#officeRefBtn").addEventListener("click",()=>{
+  const ref=$("#officeRef").value.trim().toUpperCase();
+  const out=$("#officeOut");
+  if(!/^ECO-[A-Z0-9]{6}$/.test(ref)){ out.innerHTML=`<p class="m-sub">Enter a booking reference like ECO-7K2M9X.</p>`; return; }
+  const b=loadAll().find(x=>x.ref===ref);
+  out.innerHTML=`<div class="pochi-box" style="margin-top:.6rem">
+    ${b
+      ? `<div class="pochi-cap">${b.ref} · ${esc(b.name)} · ${PLAIN[b.from]}→${PLAIN[b.to]} · ${fmt(b.currency,b.total)}${b.payRef?" · M-Pesa code "+esc(b.payRef):""} · <b>${b.status}</b></div>`
+      : `<div class="pochi-cap">Booking ${esc(ref)} is not stored on this device — verify it on WhatsApp before sending the code.</div>`}
+    <div class="pochi-num">${releaseCode(ref)}</div>
+    <small class="pochi-cap">6-digit release code — send it to the customer to unlock their e-ticket</small>
+    <a class="btn btn-dark" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("Eco Bus payment confirmed ✅ Booking "+ref+" — your release code: "+releaseCode(ref))}">Send code on WhatsApp</a>
+  </div>`;
+});
+ $("#officeRef").addEventListener("keydown",e=>{ if(e.key==="Enter") $("#officeRefBtn").click(); });
+if(location.hash==="#office") openOffice();
+addEventListener("hashchange",()=>{ if(location.hash==="#office") openOffice(); });
 
 /* =================== page features =================== */
 const nav=$("#nav"), burger=$("#burger"), menu=$("#menu"), prog=$("#progress");
